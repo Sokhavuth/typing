@@ -1,12 +1,10 @@
 #main.py
 import os
-from bottle import route, run
+from controllers.index import Index
     
-@route('/')
-def main():
-    return "Hello World!"
+app = Index()
     
 if 'DYNO' in os.environ:
-  run(host='0.0.0.0', port=os.environ.get('PORT', 8000))
+  app.run(host='0.0.0.0', port=os.environ.get('PORT', 8000))
 else: 
-  run(host='localhost', port=8000, debug=True, reloader=True)
+  app.run(host='localhost', port=8000, debug=True, reloader=True)
