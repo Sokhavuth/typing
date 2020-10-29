@@ -1,26 +1,152 @@
-/*static/css/main.css*/
+/*public/css/main.css*/
 a{
   text-decoration: none;
   color: rgb(6, 100, 138)
 }
-
 a:hover{
   color: rgb(35, 118, 226);
 }
-
 a img:hover{
   opacity: .7;
 }
-
 .region{
   max-width: 1100px;
   margin: 0 auto;
 }
-
 body{
   margin: 0;
   padding: 0;
   font: 14px/1.5 Arial, OdorMeanChey;
+}
+#blog-header{
+  background: teal;
   
 }
+.blog-title{
+  padding: 5px 0;
+  display: grid;
+  grid-template-columns: 55px 350px auto 100px;
+  align-items: center;
+}
+.blog-title .logo{
+  margin-right: 10px;
+}
+.blog-title img{
+  width: 100%;
+}
+.blog-title a{
+  font: 30px/1.5 Moul, Anton;
+  color: white;
+}
+.blog-title a:first-child{
+  margin-left: 0;
+}
+.blog-title a:hover, 
+.blog-title .login a:hover,
+.blog-title #menu a:hover{
+  color: lavender;
+}
+.blog-title .login{
+  text-align: right;
+}
+.blog-title .login a{
+  font: 15px/1.5 OdorMeanChey;
+  color: white;
+}
+.blog-title #menu ul{
+  padding: 0;
+  margin: 0;
+}
+.blog-title #menu li{
+  list-style-type: none;
+  display: inline-block;
+  padding: 0 10px;
+}
+.blog-title #menu li a{
+  font: 15px/1.5 OdorMeanChey;
+  color: white;
+  list-style: none;
+}
+#content #panel{
+  min-height: 170px;
+  border: 2px solid rgb(197, 197, 197);;
+  margin: 10px 8px 5px;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
 
+body * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.keyboard-base {
+  margin: 0 auto;
+  max-width: 1085px;
+  padding: 20px;
+  background-color: rgb(197, 197, 197);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(30, 30px);
+  grid-template-rows: repeat(5, 60px);
+  grid-gap: 5px;
+}
+
+
+.key {
+  background-color: rgb(243, 243, 243);
+  border: 2px solid black;
+  border-radius: 5px;
+  grid-column: span 2;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 17px;
+}
+
+.key:hover {
+border: 1px solid #eeeeee;
+
+}
+
+.delete {
+  grid-column: span 4;
+}
+
+.tab {
+  grid-column: span 3;
+}
+
+.backslash {
+  grid-column: span 3;
+}
+
+.capslock {
+  grid-column: span 4;
+}
+
+.return {
+  grid-column: span 4;
+}
+
+.leftshift {
+  grid-column: span 5;
+}
+
+.rightshift {
+  grid-column: span 5;
+}
+
+.leftctrl {
+  grid-column: span 3;
+}
+
+.command {
+  grid-column: span 3;
+  font-size: 14px;
+}
+
+.space {
+  grid-column: span 13;
+}
