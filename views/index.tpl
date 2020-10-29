@@ -12,6 +12,6 @@
     <link href="/static/fonts/setup.css" rel="stylesheet"></link>
   </head>
   <body>
-    <p>ស្វាគមន៍​មក​កាន់​គេហទំព័រ</p>
+    <p>ស្វាគមន៍​មក​កាន់​កម្មវិធី​រៀន​វាយ​អក្សរ​ខ្មែរ!</p>
   </body>
 </html>
