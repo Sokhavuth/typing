@@ -1,10 +1,6 @@
 <!--views/index.tpl-->
 %include("./partials/header.tpl")
 
-<style>
-  
-</style>
-
 <div id="main" class="main region">
   <div id="content" class="content">
     <div id="panel">
