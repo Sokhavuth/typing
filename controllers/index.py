@@ -12,6 +12,7 @@ class Index(Bottle):
 
         self.route('/', callback=self.index)
         self.route('/lesson/<id:int>', callback=self.lesson)
+        self.route('/practice/<id:int>', callback=self.practice)
 
     def loadImage(self, filename):
         return static_file(filename, root='./public/images')
@@ -31,4 +32,8 @@ class Index(Bottle):
 
     def lesson(self, id):
         config.kdict['blogTitle'] = 'មេរៀន​ទី '+config.kdict['KhmerNumber'][id]
-        return template('lesson'+str(id), data=config.kdict)
+        return template('lessons/lesson'+str(id), data=config.kdict)
+
+    def practice(self, id):
+        config.kdict['blogTitle'] = 'លំហាត់ទី '+config.kdict['KhmerNumber'][id]
+        return template('practices/practice'+str(id), data=config.kdict)

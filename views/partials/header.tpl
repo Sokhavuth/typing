@@ -19,29 +19,7 @@
         <div class="blog-title region">
           <a class="logo" href="/"><img src="/static/images/site_logo.png"/></a>
           <span><a href="/">{{data['blogTitle']}}</a></span>
-          <nav id="menu">
-            <div class="navbar">
-              <div class="dropdown">
-                <button class="dropbtn">មេរៀន
-                  <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                  <a href="/lesson/1">មេរៀន​ទី ១</a>
-                 
-                </div>
-              </div>
-
-              <div class="dropdown">
-                <button class="dropbtn">លំហាត់
-                  <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                  <a href="/practice/1">លុះហាត់​ទី ១</a>
-                  
-                </div>
-              </div>
-            </div>
-          </nav>
+          %include('./partials/menu.tpl')
           <span class="login"><a href="/login">ចុះ​ឈ្មោះ</a></span>
         </div>
       </div>
