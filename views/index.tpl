@@ -1,73 +1,88 @@
 <!--views/index.tpl-->
 %include("./partials/header.tpl")
 
+<style>
+  #content #panel{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 100%;
+    align-items: center;
+  }
+  #content #finger{
+    font: 14px/1.5 OdorMeanChey;
+  }
+  #content #letter{
+    font: 30px/1.5 OdorMeanChey;
+  }
+</style>
 <div id="main" class="main region">
   <div id="content" class="content">
     <div id="panel">
-     
+     <div id="finger"></div>
+     <div id="letter"></div>
     </div>
     <div class="keyboard-base">
-      <div class="key">~</div>
-      <div class="key">1</div>
-      <div class="key">2</div>
-      <div class="key">3</div>
-      <div class="key">4</div>
-      <div class="key">5</div>
-      <div class="key">6</div>
-      <div class="key">7</div>
-      <div class="key">8</div>
-      <div class="key">9</div>
-      <div class="key">0</div>
-      <div class="key">-</div>
-      <div class="key">+</div>
-      <div class="key delete">Delete</div>
-      <div class="key tab">Tab</div>
-      <div class="key">Q</div>
-      <div class="key">w</div>
-      <div class="key">E</div>
-      <div class="key">R</div>
-      <div class="key">T</div>
-      <div class="key">Y</div>
-      <div class="key">U</div>
-      <div class="key">I</div>
-      <div class="key">O</div>
-      <div class="key">P</div>
-      <div class="key">[</div>
-      <div class="key">]</div>
-      <div class="key backslash">\</div>
-      <div class="key capslock">CapsLock</div>
-      <div class="key">A</div>
-      <div class="key">S</div>
-      <div class="key">D</div>
-      <div class="key">F</div>
-      <div class="key">G</div>
-      <div class="key">H</div>
-      <div class="key">J</div>
-      <div class="key">K</div>
-      <div class="key">L</div>
-      <div class="key">;</div>
-      <div class="key">'</div>
-      <div class="key return">Return</div>
-      <div class="key leftshift">Shift</div>
-      <div class="key">Z</div>
-      <div class="key">X</div>
-      <div class="key">C</div>
-      <div class="key">V</div>
-      <div class="key">B</div>
-      <div class="key">N</div>
-      <div class="key">M</div>
-      <div class="key">,</div>
-      <div class="key">.</div>
-      <div class="key">/</div>
-      <div class="key rightshift">Shift</div>
-      <div class="key leftctrl">Ctrl</div>
-      <div class="key">Alt</div>
-      <div class="key command">Command</div>
-      <div class="key space">Space</div>
-      <div class="key command">command</div>
-      <div class="key">Alt</div>
-      <div class="key">Ctrl</div>
-      <div class="key">Fn</div>
+      <div tabindex="0" class="key">~</div>
+      <div tabindex="0" class="key">1</div>
+      <div tabindex="0" class="key">2</div>
+      <div tabindex="0" class="key">3</div>
+      <div tabindex="0" class="key">4</div>
+      <div tabindex="0" class="key">5</div>
+      <div tabindex="0" class="key">6</div>
+      <div tabindex="0" class="key">7</div>
+      <div tabindex="0" class="key">8</div>
+      <div tabindex="0" class="key">9</div>
+      <div tabindex="0" class="key">0</div>
+      <div tabindex="0" class="key">-</div>
+      <div tabindex="0" class="key">+</div>
+      <div tabindex="0" class="key delete">Delete</div>
+      <div tabindex="0" class="key tab">Tab</div>
+      <div tabindex="0" class="key">Q</div>
+      <div tabindex="0" class="key">W</div>
+      <div tabindex="0" class="key">E</div>
+      <div tabindex="0" class="key">R</div>
+      <div tabindex="0" class="key">T</div>
+      <div tabindex="0" class="key">Y</div>
+      <div tabindex="0" class="key">U</div>
+      <div tabindex="0" class="key">I</div>
+      <div tabindex="0" class="key">O</div>
+      <div tabindex="0" class="key">P</div>
+      <div tabindex="0" class="key">[</div>
+      <div tabindex="0" class="key">]</div>
+      <div tabindex="0" class="key backslash">\</div>
+      <div tabindex="0" class="key capslock">CapsLock</div>
+      <div tabindex="0" class="key">A</div>
+      <div tabindex="0" class="key">S</div>
+      <div tabindex="0" class="key">D</div>
+      <div tabindex="0" class="key">F</div>
+      <div tabindex="0" class="key">G</div>
+      <div tabindex="0" class="key">H</div>
+      <div tabindex="0" class="key">J</div>
+      <div tabindex="0" class="key">K</div>
+      <div tabindex="0" class="key">L</div>
+      <div tabindex="0" class="key">;</div>
+      <div tabindex="0" class="key">'</div>
+      <div tabindex="0" class="key return">Return</div>
+      <div tabindex="0" class="key leftshift">Shift</div>
+      <div tabindex="0" class="key">Z</div>
+      <div tabindex="0" class="key">X</div>
+      <div tabindex="0" class="key">C</div>
+      <div tabindex="0" class="key">V</div>
+      <div tabindex="0" class="key">B</div>
+      <div tabindex="0" class="key">N</div>
+      <div tabindex="0" class="key">M</div>
+      <div tabindex="0" class="key">,</div>
+      <div tabindex="0" class="key">.</div>
+      <div tabindex="0" class="key">/</div>
+      <div tabindex="0" class="key rightshift">Shift</div>
+      <div tabindex="0" class="key leftctrl">Ctrl</div>
+      <div tabindex="0" class="key">Alt</div>
+      <div tabindex="0" class="key command">Command</div>
+      <div tabindex="0" class="key space">Space</div>
+      <div tabindex="0" class="key command">command</div>
+      <div tabindex="0" class="key">Alt</div>
+      <div tabindex="0" class="key">Ctrl</div>
+      <div tabindex="0" class="key">Fn</div>
     </div>
   </div>
 </div>

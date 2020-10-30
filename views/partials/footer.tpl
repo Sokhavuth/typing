@@ -1,16 +1,8 @@
 
 <footer >
-  <style>
-    footer{
-      background: rgb(165, 165, 165);
-    }
-    .footer{
-      text-align: center;
-      padding: 40px;
-      margin-top: 30px;
-      font-weight: bold;
-    }
-  </style>
+  <script>
+    const typing = new Typing();
+  </script>
   <div class="footer region">Khmer Web Typing © 2020 </div>
 </footer>
 

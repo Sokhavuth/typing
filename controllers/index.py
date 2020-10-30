@@ -4,7 +4,7 @@ from bottle import Bottle, template, static_file
 
 class Index(Bottle):
     def __init__(self):
-        super(Index, self).__init__()
+        super().__init__()
         self.route('/static/images/<filename>', callback=self.loadImage)
         self.route('/static/styles/<filename>', callback=self.loadStyle)
         self.route('/static/scripts/<filename>', callback=self.loadScript)
@@ -26,4 +26,3 @@ class Index(Bottle):
 
     def index(self):
         return template('index', data=config.kdict)
-
