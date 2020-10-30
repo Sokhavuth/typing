@@ -1,4 +1,4 @@
-//public/js/main.js
+//public/js/lesson1.js
 class Typing{
   constructor(){
     $(".keyboard-base .key").on({
@@ -57,6 +57,4 @@ class Typing{
     }
   }
 }//end of class
-
-
   

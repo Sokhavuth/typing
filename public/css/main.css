@@ -53,20 +53,7 @@ body{
   font: 15px/1.5 OdorMeanChey;
   color: white;
 }
-.blog-title #menu ul{
-  padding: 0;
-  margin: 0;
-}
-.blog-title #menu li{
-  list-style-type: none;
-  display: inline-block;
-  padding: 0 10px;
-}
-.blog-title #menu li a{
-  font: 15px/1.5 OdorMeanChey;
-  color: white;
-  list-style: none;
-}
+
 #content #panel{
   min-height: 170px;
   background: rgb(197, 197, 197);
@@ -135,6 +122,18 @@ border: 1px solid #eeeeee;
 }
 .space {
   grid-column: span 13;
+}
+#content #panel{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 100%;
+  align-items: center;
+}
+#content #finger{
+  font: 14px/1.5 OdorMeanChey;
+}
+#content #letter{
+  font: 30px/1.5 OdorMeanChey;
 }
 footer{
   background: rgb(165, 165, 165);
