@@ -17,7 +17,7 @@ class Typing{
     ["'",'កូនដៃ','់'],['Space','មេដៃស្តាំ','']];
     
     this.counter = Math.floor(Math.random() * (this.letters).length);
-    
+    this.usedCounter = this.counter;
     this.nextKey = this.letters[this.counter][0];
     this.setColor(this.nextKey);
   }
@@ -40,7 +40,13 @@ class Typing{
 
   checkKey(key){
     if(key == this.nextKey){
-      this.counter = Math.floor(Math.random() * (this.letters).length);
+      while(true){
+        this.counter = Math.floor(Math.random() * (this.letters).length);
+        if(this.counter != this.usedCounter){
+          this.usedCounter = this.counter
+          break;
+        }
+      }
 
       this.pressedKey = this.nextKey;
       this.nextKey = this.letters[this.counter][0];
