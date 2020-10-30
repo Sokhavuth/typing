@@ -15,7 +15,7 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-        <a href="/practice/1">លុះហាត់​ទី ១</a>
+        <a href="/practice/1">លំហាត់​ទី ១</a>
         
       </div>
     </div>
