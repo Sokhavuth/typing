@@ -21,3 +21,6 @@
     </div>
   </div>
 </nav>
+<audio id="beep">
+  <source src="/static/sounds/beep.mp3" type="audio/mpeg">
+</audio>

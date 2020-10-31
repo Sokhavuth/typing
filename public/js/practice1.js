@@ -5,9 +5,10 @@ class Typing{
       keypress: function(event){
         if(event.which != 32)
           var key = String.fromCharCode(event.which).toUpperCase();
-        else if(event.which == 32)
+        else if(event.which == 32){
+          event.preventDefault();
           var key = "Space";
-        
+        }
         typing.checkKey(key)
       } 
     });
@@ -51,7 +52,7 @@ class Typing{
       this.pressedKey = this.nextKey;
       this.nextKey = this.letters[this.counter][0];
       this.setColor(this.nextKey);
-    }
+    }else
+      document.getElementById('beep').play();
   }
 }//end of class
-  
