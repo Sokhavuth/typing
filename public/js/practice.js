@@ -6,6 +6,7 @@ class Typing{
     this.usedCounter = this.counter;
     this.nextKey = this.letters[this.counter][0];
     this.mistake = 0;
+    this.scoreLetter = 0;
     this.setClock();
     this.setColor(this.nextKey);
   }
@@ -28,6 +29,7 @@ class Typing{
 
   checkKey(key){
     if(key == this.nextKey){
+      this.scoreLetter += 1;
       while(true){
         this.counter = Math.floor(Math.random() * (this.letters).length);
         if(this.counter != this.usedCounter){
@@ -62,7 +64,8 @@ class Typing{
     var second = 0;
     var minute = 0;
     var hour = 0;
-
+    var minuteTest = 0
+    
     setInterval(() => {
       $('#timelapse .second').html(this.toKhNum(++second));
 
@@ -73,6 +76,11 @@ class Typing{
 
       if(minute == 60){
         minute = 0;
+        ++minuteTest;
+
+        if((minuteTest == 3) && (this.scoreLetter == 720) && (this.mistake == 0))
+          alert('សូម​អបអរ​សាទ​ដោយ​អ្នក​បាន​​ឆ្លង​ផុត​កំរឹត​នេះ​ហើយ​!!');
+
         $('#timelapse .hour').html(this.toKhNum(++hour));
       }
 
