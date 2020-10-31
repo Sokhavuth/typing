@@ -1,22 +1,7 @@
-//public/js/practice1.js
+//public/js/practice.js
 class Typing{
-  constructor(){
-    $(".keyboard-base .key").on({
-      keypress: function(event){
-        if(event.which != 32)
-          var key = String.fromCharCode(event.which).toUpperCase();
-        else if(event.which == 32){
-          event.preventDefault();
-          var key = "Space";
-        }
-        typing.checkKey(key)
-      } 
-    });
-
-    this.letters = [['A','កូន​ដៃ','ា'],['S','នាង​ដៃ','ស'],['D','ចង្អុលកណ្តាល','ដ'],['F','ចង្អុលដៃ','ថ'],['G','ចង្អុលដៃ','ង'],
-    ['H','ចង្អុល​ដៃ​ស្តាំ','ហ'],['J','ចង្អុល​ដៃ​ស្តាំ','្'],['K','ចង្អុលកណ្តាល','ក'],['L','នាងដៃ','ល'],[';','កូនដៃ','ើ'],
-    ["'",'កូនដៃ','់'],['Space','មេដៃស្តាំ','']];
-    
+  constructor(practice){
+    this.letters = practice;
     this.counter = Math.floor(Math.random() * (this.letters).length);
     this.usedCounter = this.counter;
     this.nextKey = this.letters[this.counter][0];

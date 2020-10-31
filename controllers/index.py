@@ -1,6 +1,7 @@
 #controllers/index.py
 import config
 from bottle import Bottle, template, static_file
+from models import lesson, practice
 
 class Index(Bottle):
     def __init__(self):
@@ -32,12 +33,15 @@ class Index(Bottle):
 
     def index(self):
         config.kdict['blogTitle'] = "រៀន​វាយ​អក្សរ​ខ្មែរ"
+        config.kdict['lesson'] = lesson.lesson1
         return template('index', data=config.kdict)
 
     def lesson(self, id):
         config.kdict['blogTitle'] = 'មេរៀន​ទី '+config.kdict['KhmerNumber'][id]
-        return template('lessons/lesson'+str(id), data=config.kdict)
+        config.kdict['lesson'] = lesson.__dict__['lesson'+str(id)]
+        return template('lesson', data=config.kdict)
 
     def practice(self, id):
         config.kdict['blogTitle'] = 'លំហាត់ទី '+config.kdict['KhmerNumber'][id]
-        return template('practices/practice'+str(id), data=config.kdict)
+        config.kdict['practice'] = practice.__dict__['practice'+str(id)]
+        return template('practice', data=config.kdict)
