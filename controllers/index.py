@@ -43,5 +43,9 @@ class Index(Bottle):
 
     def practice(self, id):
         config.kdict['blogTitle'] = 'លំហាត់ទី '+config.kdict['KhmerNumber'][id]
-        config.kdict['lesson'] = lesson.__dict__['lesson'+str(id)]
+        practice = []
+        for v in range(id):
+            practice += lesson.__dict__['lesson'+str(v+1)]
+
+        config.kdict['lesson'] = practice
         return template('practice', data=config.kdict)
