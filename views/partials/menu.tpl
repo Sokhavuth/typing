@@ -6,6 +6,7 @@
       </button>
       <div class="dropdown-content">
         <a href="/lesson/1">មេរៀន​ទី ១</a>
+        <a href="/lesson/2">មេរៀន​ទី ២</a>
        
       </div>
     </div>
@@ -16,6 +17,7 @@
       </button>
       <div class="dropdown-content">
         <a href="/practice/1">លំហាត់​ទី ១</a>
+        <a href="/practice/2">លំហាត់​ទី ២</a>
         
       </div>
     </div>

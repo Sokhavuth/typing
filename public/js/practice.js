@@ -68,7 +68,6 @@ class Typing{
     
     setInterval(() => {
       $('#timelapse .second').html(this.toKhNum(++second));
-
       if(second == 60){
         second = 0;
         $('#timelapse .minute').html(this.toKhNum(++minute));
@@ -77,12 +76,11 @@ class Typing{
       if(minute == 60){
         minute = 0;
         ++minuteTest;
-
-        if((minuteTest == 3) && (this.scoreLetter == 720) && (this.mistake == 0))
-          alert('សូម​អបអរ​សាទ​ដោយ​អ្នក​បាន​​ឆ្លង​ផុត​កំរឹត​នេះ​ហើយ​!!');
-
         $('#timelapse .hour').html(this.toKhNum(++hour));
       }
+
+      if((minuteTest <= 3) && (this.scoreLetter >= 720) && (this.mistake == 0))
+        alert('សូម​អបអរ​សាទ​ដោយ​អ្នក​បាន​​ឆ្លង​ផុត​កំរឹត​នេះ​ហើយ​!!');
 
     }, 1000);
   }

@@ -1,7 +1,7 @@
 #controllers/index.py
 import config
 from bottle import Bottle, template, static_file
-from models import lesson, practice
+from models import lesson
 
 class Index(Bottle):
     def __init__(self):
@@ -43,5 +43,5 @@ class Index(Bottle):
 
     def practice(self, id):
         config.kdict['blogTitle'] = 'លំហាត់ទី '+config.kdict['KhmerNumber'][id]
-        config.kdict['practice'] = practice.__dict__['practice'+str(id)]
+        config.kdict['lesson'] = lesson.__dict__['lesson'+str(id)]
         return template('practice', data=config.kdict)
