@@ -1,8 +1,21 @@
 <div id="main" class="main region">
   <div id="content" class="content">
     <div id="panel">
-     <div id="finger"></div>
-     <div id="letter"></div>
+      <div id='left-panel'>
+        <div id="mistake">កំហុសៈ <span>០</span></div>
+        <div id="timelapse">
+          រយៈពេលៈ <span class="hour">០</span>:<span class="minute">០</span>:<span class="second">០</span>
+        </div>
+      </div>
+      <div>
+        <div id="finger"></div>
+        <div id="letter"></div>
+      </div>
+     
+      <div id='right-panel'>
+        <div id="user">ភ្ញៀវ</div>
+        <div id='level'>កំរឹតទី <span>១</span></div>
+      </div>
     </div>
     <div class="keyboard-base">
       <div tabindex="0" class="key">~</div>
