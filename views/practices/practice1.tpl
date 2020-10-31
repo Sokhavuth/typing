@@ -18,7 +18,7 @@
       <div id="blog-header">
         <div class="blog-title region">
           <a class="logo" href="/"><img src="/static/images/site_logo.png"/></a>
-          <span><a href="/">{{data['blogTitle']}}</a></span>
+          <span><a>{{data['blogTitle']}}</a></span>
           %include('./partials/menu.tpl')
           <span class="login"><a href="/login">ចុះ​ឈ្មោះ</a></span>
         </div>
