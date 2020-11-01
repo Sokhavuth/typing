@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="keyboard-base">
-      <div tabindex="0" class="key">~</div>
+      <div tabindex="0" class="key">`</div>
       <div tabindex="0" class="key">1</div>
       <div tabindex="0" class="key">2</div>
       <div tabindex="0" class="key">3</div>
@@ -31,7 +31,7 @@
       <div tabindex="0" class="key">9</div>
       <div tabindex="0" class="key">0</div>
       <div tabindex="0" class="key">-</div>
-      <div tabindex="0" class="key">+</div>
+      <div tabindex="0" class="key">=</div>
       <div tabindex="0" class="key delete">Delete</div>
       <div tabindex="0" class="key tab">Tab</div>
       <div tabindex="0" class="key">Q</div>

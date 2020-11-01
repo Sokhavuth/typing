@@ -23,7 +23,7 @@ class Typing{
         $(keys[index]).css({'color':'black'});
       }
     }
-
+    
     if(this.showFinger < 3)
       $('#finger').html(this.letters[this.counter][1]);
     else

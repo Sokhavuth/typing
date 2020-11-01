@@ -34,7 +34,7 @@ class Index(Bottle):
     def index(self):
         config.kdict['blogTitle'] = "រៀន​វាយ​អក្សរ​ខ្មែរ"
         practice = []
-        for v in range(3):
+        for v in range(4):
             practice += lesson.__dict__['lesson'+str(v+1)]
 
         config.kdict['lesson'] = practice
