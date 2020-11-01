@@ -14,25 +14,24 @@ class Typing{
   }
 
   setColor(nextKey){
-    $('.leftshift').css({'color':'black'});
-    $('.rightshift').css({'color':'black'});
-
     nextKey = nextKey.toUpperCase();
-    if(this.pressedKey)
-      var pressedKey = (this.pressedKey).toUpperCase();
 
     var rightShift = {'A':1,'S':1,'D':1,'F':1,'G':1};
     var leftShift = {'H':1,'J':1,'K':1,'L':1,':':1,'"':1};
 
-    var keys = $(".keyboard-base").children();
+    var keys = $(".keyboard-base").children().css({'color':'black'});
+
     for(var index in keys){
       var key = keys[index].innerHTML;
 
-      if(this.nextKey == nextKey){
-        if(key == ';'){
-          key = ':';
-        }else if(key == "'"){
-          key = '"';
+      if((this.nextKey in rightShift) || (this.nextKey in leftShift)){
+        switch(key){
+          case ';':
+            key = ":";
+            break;
+          case "'":
+            key = '"';
+            break;
         }
       }
 
@@ -42,15 +41,9 @@ class Typing{
 
         if(this.nextKey in rightShift){
           $('.rightshift').css({'color':'teal'});
-          $('.leftshift').css({'color':'black'});
         }else if(this.nextKey in leftShift){
           $('.leftshift').css({'color':'teal'});
-          $('.rightshift').css({'color':'black'});
         }
-      }
-
-      if(pressedKey && (key == pressedKey)){
-        $(keys[index]).css({'color':'black'});
       }
     }
     
