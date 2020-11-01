@@ -33,7 +33,11 @@ class Index(Bottle):
 
     def index(self):
         config.kdict['blogTitle'] = "រៀន​វាយ​អក្សរ​ខ្មែរ"
-        config.kdict['lesson'] = lesson.lesson1
+        practice = []
+        for v in range(3):
+            practice += lesson.__dict__['lesson'+str(v+1)]
+
+        config.kdict['lesson'] = practice
         return template('index', data=config.kdict)
 
     def lesson(self, id):

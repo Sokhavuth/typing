@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{data['blogTitle']}}</title>
     <script src="/static/scripts/jQuery.js"></script>
-    <script src="/static/scripts/lesson.js"></script>
+    <script src="/static/scripts/practice.js"></script>
     <link href="/static/styles/main.css" rel="stylesheet"></link>
     <link href="/static/styles/menu.css" rel="stylesheet"></link>
     <link href="/static/images/site_logo.png" rel="icon" ></link>

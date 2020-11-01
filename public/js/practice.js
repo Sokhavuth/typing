@@ -56,8 +56,7 @@ class Typing{
     var khNumString = '';
    
     for(var i in stringNum){
-      var char = stringNum.charAt(i);
-      khNumString += khNum[char];
+      khNumString += khNum[stringNum[i]];
     }
    
     return khNumString;
