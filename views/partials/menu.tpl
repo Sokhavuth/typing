@@ -9,6 +9,7 @@
         <a href="/lesson/2">មេរៀន​ទី ២</a>
         <a href="/lesson/3">មេរៀន​ទី ៣</a>
         <a href="/lesson/4">មេរៀន​ទី ៤</a>
+        <a href="/lesson/5">មេរៀន​ទី ៥</a>
        
       </div>
     </div>
@@ -22,6 +23,7 @@
         <a href="/practice/2">លំហាត់​ទី ២</a>
         <a href="/practice/3">លំហាត់​ទី ៣</a>
         <a href="/practice/4">លំហាត់​ទី ៤</a>
+        <a href="/practice/5">លំហាត់​ទី ៥</a>
         
       </div>
     </div>

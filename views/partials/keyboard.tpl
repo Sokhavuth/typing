@@ -75,7 +75,7 @@
       <div tabindex="0" class="key leftctrl">Ctrl</div>
       <div tabindex="0" class="key">Alt</div>
       <div tabindex="0" class="key command">Command</div>
-      <div tabindex="0" class="key space">Space</div>
+      <div tabindex="0" class="key space">SPACE</div>
       <div tabindex="0" class="key command">command</div>
       <div tabindex="0" class="key">Alt</div>
       <div tabindex="0" class="key">Ctrl</div>

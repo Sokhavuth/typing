@@ -5,6 +5,7 @@ class Typing{
     this.counter = 0;
     this.showFinger = 0;
     this.nextKey = this.letters[0][0];
+    this.pressedKey = 0;
     this.mistake = 0;
     this.numLetters = 0;
     this.setColor(this.nextKey);
@@ -12,14 +13,42 @@ class Typing{
   }
 
   setColor(nextKey){
+    $('.leftshift').css({'color':'black'});
+    $('.rightshift').css({'color':'black'});
+
+    nextKey = nextKey.toUpperCase();
+    if(this.pressedKey)
+      var pressedKey = (this.pressedKey).toUpperCase();
+
+    var rightShift = {'A':1,'S':1,'D':1,'F':1,'G':1};
+    var leftShift = {'H':1,'J':1,'K':1,'L':1,':':1,'"':1};
+
     var keys = $(".keyboard-base").children();
     for(var index in keys){
-      if(keys[index].innerHTML == nextKey){
-        keys[index].focus();
-        $(keys[index]).css({'color':'teal'});
+      var key = keys[index].innerHTML;
+
+      if(this.nextKey == nextKey){
+        if(key == ';'){
+          key = ':';
+        }else if(key == "'"){
+          key = '"';
+        }
       }
 
-      if(this.pressedKey && (keys[index].innerHTML == this.pressedKey)){
+      if(key == nextKey){
+        keys[index].focus();
+        $(keys[index]).css({'color':'teal'});
+
+        if(this.nextKey in rightShift){
+          $('.rightshift').css({'color':'teal'});
+          $('.leftshift').css({'color':'black'});
+        }else if(this.nextKey in leftShift){
+          $('.leftshift').css({'color':'teal'});
+          $('.rightshift').css({'color':'black'});
+        }
+      }
+
+      if(pressedKey && (key == pressedKey)){
         $(keys[index]).css({'color':'black'});
       }
     }
@@ -43,7 +72,7 @@ class Typing{
       }
 
       this.pressedKey = this.nextKey;
-      this.nextKey = this.letters[this.counter][0];
+      this.nextKey = (this.letters[this.counter][0]);
       this.setColor(this.nextKey);
     }else{
       document.getElementById('beep').play();
