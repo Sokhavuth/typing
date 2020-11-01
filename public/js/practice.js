@@ -7,6 +7,7 @@ class Typing{
     this.nextKey = this.letters[this.counter][0];
     this.mistake = 0;
     this.scoreLetter = 0;
+    this.numLetters = 0;
     this.setClock();
     this.setColor(this.nextKey);
   }
@@ -45,6 +46,8 @@ class Typing{
       document.getElementById('beep').play();
       $('#mistake span').html(this.toKhNum(++this.mistake));
     }
+
+    $('#letters span').html(this.toKhNum(++this.numLetters))
   }
 
   toKhNum(number){
