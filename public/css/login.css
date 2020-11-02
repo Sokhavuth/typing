@@ -1,0 +1,38 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: rgb(163, 163, 163);
+  font: 14px/1.5 Arial, OdorMeanChey;
+  padding: 30px;
+}
+#login{
+  width: 500px;
+  margin: 0 auto;
+  background: lavender;
+  border-radius: 4px;
+  padding: 0 0 20px;
+}
+#info{
+  text-align: center;
+  font: 18px/1.5 Oswald, Moul;
+  background: rgb(226, 4, 4);
+  border-radius: 4px 4px 0 0;
+  padding: 5px;
+  color: white;
+}
+.wrapper{
+  margin: 20px 20px 0;
+  display: grid;
+  grid-template-columns: 25% auto;
+  grid-gap: 5px;
+  align-items: center;
+}
+.wrapper a{
+  text-align: right;
+}
+.wrapper input{
+  padding: 5px 10px;
+  font: 14px/1.5 Arial, OdorMeanChey;
+}

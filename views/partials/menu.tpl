@@ -33,7 +33,9 @@
         
       </div>
     </div>
-  </div>
+    <a href="#about">អំពីពួកយើង</a>
+    <a href="#contact">ទំនាក់ទំនង</a>
+  </div><!--navbar-->
 </nav>
 <audio id="beep">
   <source src="/static/sounds/beep.mp3" type="audio/mpeg">

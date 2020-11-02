@@ -10,7 +10,8 @@ $(".keyboard-base .key").on({
         event.preventDefault();
       
       typing.checkKey(key)
-    } 
+    }
+    
 });
 </script>
 </div><!--sites-->
