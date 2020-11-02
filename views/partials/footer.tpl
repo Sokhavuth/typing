@@ -5,12 +5,10 @@
 <script>
 $(".keyboard-base .key").on({
     keypress: function(event){
-      if(event.which != 32)
-        var key = String.fromCharCode(event.which);
-      else if(event.which == 32){
+      var key = String.fromCharCode(event.which);
+      if(event.which == 32)
         event.preventDefault();
-        var key = "SPACE";
-      }
+      
       typing.checkKey(key)
     } 
 });

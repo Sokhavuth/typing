@@ -14,35 +14,33 @@ class Typing{
   }
 
   setColor(nextKey){
-    nextKey = nextKey.toUpperCase();
-
-    var rightShift = {'A':1,'S':1,'D':1,'F':1,'G':1};
-    var leftShift = {'H':1,'J':1,'K':1,'L':1,':':1,'"':1};
+    var rightShift = {'A':1,'S':1,'D':1,'F':1,'G':1,'Z':1,'X':1,'C':1,'V':1,'B':1,'Q':1,'W':1,'E':1,'R':1,'T':1,
+                      '`':1,'!':1,'@':1,'#':1,'$':1,'%':1};
+    var leftShift = {'H':1,'J':1,'K':1,'L':1,':':1,'"':1,'N':1,'M':1,'<':1,'>':1,'?':1,'Y':1,'U':1,'I':1,'O':1,'P':1,
+                    '{':1,'}':1,'|':1,'^':1,'&':1,'*':1,'(':1,')':1,'_':1,'+':1};
 
     var keys = $(".keyboard-base").children().css({'color':'black'});
-
+    
     for(var index in keys){
       var key = keys[index].innerHTML;
 
-      if((this.nextKey in rightShift) || (this.nextKey in leftShift)){
-        switch(key){
-          case ';':
-            key = ":";
-            break;
-          case "'":
-            key = '"';
-            break;
+      if(key){
+        var data = keys[index].getAttribute("data-l");
+        if(key == "'"){
+          data += '"';
         }
-      }
 
-      if(key == nextKey){
-        keys[index].focus();
-        $(keys[index]).css({'color':'teal'});
+        if((nextKey == data[5]) || (nextKey == data[6])){
+          keys[index].focus();
+          $(keys[index]).css({'color':'teal'});
 
-        if(this.nextKey in rightShift){
-          $('.rightshift').css({'color':'teal'});
-        }else if(this.nextKey in leftShift){
-          $('.leftshift').css({'color':'teal'});
+          if(this.nextKey in rightShift){
+            $('.rightshift').css({'color':'teal'});
+          }else if(this.nextKey in leftShift){
+            $('.leftshift').css({'color':'teal'});
+          }
+
+          break;
         }
       }
     }
