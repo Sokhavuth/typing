@@ -14,12 +14,12 @@
   <body>
     <div id="site">
       <form id="login" action='/login/user' method='post'>
-        <div id='info'>ទំរង់បែបបទ​ចុះ​ឈ្មោះ</div>
+        <div id='info'>ទំរង់បែបបទ​ចុះ​ឈ្មោះចូល​ក្នុង</div>
         <dv class='message'>{{data['message']}}</dv>
         %data['message'] = ''
         <div class="wrapper">
           <a>Email:​</a><input 
-          type="text" name="fusername" required />
+          type="email" name="fusername" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
           <a>ពាក្យ​សំងាត់ៈ</a><input class='password' type='password' name='fpassword' required />
           <a></a><input type='submit' value='បញ្ជូន' />
         </div>
