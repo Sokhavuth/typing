@@ -14,8 +14,8 @@
       </div>
      
       <div id='right-panel'>
-        <div id="user">ភ្ញៀវ</div>
-        <div id='level'>កំរឹតៈ <span>អត់​មាន</span></div>
+        <div id="user">{{data['user'][0]}}</div>
+        <div id='level'>កំរឹតៈ <span>{{data['KhmerNumber'][data['user'][2]]}}</span></div>
       </div>
     </div>
     <div class="keyboard-base">

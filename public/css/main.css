@@ -25,7 +25,7 @@ body{
 .blog-title{
   padding: 5px 0;
   display: grid;
-  grid-template-columns: 55px 350px auto 150px;
+  grid-template-columns: 55px 350px auto 200px;
   align-items: center;
 }
 .blog-title .logo{

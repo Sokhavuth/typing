@@ -35,13 +35,34 @@ class Userdb():
 
     self.cursor.execute(SQL)
   
-    self.conn.commit()
     self.conn.close()
 
   def insert(self, *user):
     self.setConection()
 
-    self.cursor.execute("INSERT INTO TYPERS (EMAIL, PASSWORD, GRADE, GRADUATED) VALUES %s ", (user,))
+    self.cursor.execute("INSERT INTO TYPERS (USERNAME, PASSWORD, EMAIL, GRADE, GRADUATED) VALUES %s ", (user,))
   
     self.conn.commit()
     self.conn.close()
+
+  def checkUser(self, *user):
+    self.setConection()
+
+    SQL = "SELECT USERNAME, PASSWORD, GRADE FROM TYPERS WHERE USERNAME = %s AND PASSWORD = %s AND EMAIL = %s LIMIT 1"
+    self.cursor.execute(SQL, user)
+    result = self.cursor.fetchone()
+    
+    self.conn.close()
+
+    return result
+
+  def checkUsername(self, username):
+    self.setConection()
+
+    SQL = "SELECT USERNAME FROM TYPERS WHERE USERNAME = %s LIMIT 1"
+    self.cursor.execute(SQL, (username,))
+    result = self.cursor.fetchone()
+    
+    self.conn.close()
+
+    return result

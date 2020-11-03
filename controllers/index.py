@@ -1,6 +1,6 @@
 #controllers/index.py
 import config
-from bottle import Bottle, template, static_file
+from bottle import Bottle, template, static_file, request
 from models import lesson
 
 class Index(Bottle):
