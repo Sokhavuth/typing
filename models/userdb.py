@@ -23,11 +23,12 @@ class Userdb():
   
   def createTable(self):
     self.setConection()
-
+    self.cursor.execute('DROP TABLE TYPERS')
     SQL = '''CREATE TABLE IF NOT EXISTS TYPERS(
       ID SERIAL PRIMARY KEY,
-      EMAIL VARCHAR(320),
+      USERNAME TEXT,
       PASSWORD VARCHAR(320),
+      EMAIL VARCHAR(320),
       GRADE INT,
       GRADUATED BOOLEAN NOT NULL
     )'''

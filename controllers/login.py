@@ -1,6 +1,6 @@
 #controllers/login.py
 import config
-from bottle import Bottle, template, request
+from bottle import Bottle, template, request, redirect
 from verify_email import verify_email
 from models.userdb import Userdb
 
@@ -20,8 +20,15 @@ class Login(Bottle):
     return template('login', data=config.kdict)
 
   def postUser(self):
-    print(verify_email('vuthdevelop@gmail.com'))
-    return 'post user'
+    username = request.forms.getunicode('fusername')
+    password = request.forms.getunicode('fpassword')
+    email = request.forms.getunicode('femail')
+
+    if verify_email(email):
+      return 'post user'
+    else:
+      config.kdict['message'] = 'Email របស់​លោក​អ្នក​មិនត្រឹមត្រូវ​ទេ។'
+      redirect('/login')
 
   def getUser(self):
     return 'get user'

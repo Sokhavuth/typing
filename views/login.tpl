@@ -14,15 +14,15 @@
   <body>
     <div id="site">
       <form id="login" action='/login/user' method='post'>
-        <div id='info'>ទំរង់បែបបទ​ចុះ​ឈ្មោះចូល​ក្នុង</div>
-        <dv class='message'>{{data['message']}}</dv>
-        %data['message'] = ''
+        <div  id='info'>ទំរង់បែបបទ​ចុះ​ឈ្មោះ</div>
         <div class="wrapper">
-          <a>Email:​</a><input 
-          type="email" name="fusername" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
+          <a></a><div style='text-align:center;'><dv class='message'>{{data['message']}}</dv></div>
+          <a>អ្នក​ប្រើប្រាស់ៈ</a><input class='username' type='text' name='fusername' required />
           <a>ពាក្យ​សំងាត់ៈ</a><input class='password' type='password' name='fpassword' required />
+          <a>Email:​</a><input type="email" name="femail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
           <a></a><input type='submit' value='បញ្ជូន' />
         </div>
+        %data['message'] = ''
       </form>
     </div><!--sites-->
   </body>
