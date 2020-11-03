@@ -19,9 +19,6 @@
           <a class="logo" href="/"><img src="/static/images/site_logo.png"/></a>
           <span><a>{{data['blogTitle']}}</a></span>
           %include('./partials/menu.tpl')
-          <span style="text-align: right;">
-            <span class="login"><a href="/login">ចូលក្នុង</a></span>
-            <span class="login"><a href="/signup">| ចុះ​ឈ្មោះ</a></span>
-          </span>
+          <span style="text-align: right;" class="login"><a href="/login">ចុះ​ឈ្មោះ</a></span>
         </div>
       </div>
