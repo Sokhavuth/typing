@@ -9,7 +9,7 @@ class Userdb():
     if 'DYNO' in os.environ:
       DATABASE_URL = os.environ['DATABASE_URL']
       self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-      self.cursor = conn.cursor()
+      self.cursor = self.conn.cursor()
     else: 
       self.conn = psycopg2.connect(
         database="postgres", 
