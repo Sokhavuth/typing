@@ -1,5 +1,5 @@
 #controllers/login.py
-import config
+import config, pdfkit, uuid
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
@@ -12,6 +12,7 @@ class Login(Bottle):
     self.post('/user', callback=self.postUser)
     self.get('/logout', callback=self.logout)
     self.post('/update', callback=self.updateUser)
+    self.get('/pdf', callback=self.createPdf)
 
     self.userdb = userdb.Userdb()
     
@@ -66,3 +67,8 @@ class Login(Bottle):
       self.userdb.updateUser(username)
       grade = self.userdb.checkUsername(username)
       return {'grade':grade[2]}
+
+  def createPdf(sefl):
+    id = str(uuid.uuid4().int)
+    pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf')
+    return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'

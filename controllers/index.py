@@ -12,6 +12,7 @@ class Index(Bottle):
         self.route('/static/scripts/<filename>', callback=self.loadScript)
         self.route('/static/fonts/<filename>', callback=self.loadFont)
         self.route('/static/sounds/<filename>', callback=self.loadSound)
+        self.route('/static/pdfs/<filename>', callback=self.loadPdf)
 
         self.route('/', callback=self.index)
         self.route('/lesson/<id:int>', callback=self.lesson)
@@ -33,6 +34,9 @@ class Index(Bottle):
 
     def loadSound(self, filename):
         return static_file(filename, root='./public/sounds')
+
+    def loadPdf(self, filename):
+        return static_file(filename, root='./public/pdfs')
 
     def checkLoggedIn(self, kdict):
         username = request.get_cookie('logged-in', secret=kdict['secretKey'])
