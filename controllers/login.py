@@ -70,5 +70,6 @@ class Login(Bottle):
 
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
+    config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
     pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf')
     return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
