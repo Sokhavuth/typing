@@ -72,8 +72,8 @@ class Login(Bottle):
     id = str(uuid.uuid4().int)
     if 'DYNO' in os.environ:
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-      pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf', configuration=config)
+      pdfkit.from_url('http://google.com', 'pdfs/'+id+'.pdf', configuration=config)
     else:
-      pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf')
+      pdfkit.from_url('http://google.com', 'pdfs/'+id+'.pdf')
 
     return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
