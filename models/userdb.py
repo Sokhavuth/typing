@@ -66,3 +66,11 @@ class Userdb():
     self.conn.close()
 
     return result
+
+  def deleteUser(self, username):
+    self.setConection()
+
+    self.cursor.execute("DELETE FROM TYPERS WHERE USERNAME = '" + username + "'")
+
+    self.conn.commit()
+    self.conn.close()

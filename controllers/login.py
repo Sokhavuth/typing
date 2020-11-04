@@ -55,5 +55,9 @@ class Login(Bottle):
 
   def logout(self):
     kdict = deepcopy(config.kdict)
+    username = request.get_cookie('logged-in', secret=kdict['secretKey'])
+    if username:
+      self.userdb.deleteUser(username)
+      
     response.delete_cookie('logged-in', path='/', secret=kdict['secretKey'])
     redirect('/')
