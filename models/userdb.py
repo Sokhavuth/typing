@@ -74,3 +74,11 @@ class Userdb():
 
     self.conn.commit()
     self.conn.close()
+
+  def updateUser(self, username):
+    self.setConection()
+
+    self.cursor.execute("UPDATE TYPERS SET GRADE = GRADE + 1 WHERE USERNAME = %s", (username,))
+
+    self.conn.commit()
+    self.conn.close()

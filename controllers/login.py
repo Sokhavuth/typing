@@ -9,9 +9,9 @@ class Login(Bottle):
   def __init__(self):
     super().__init__()
     self.get('/', callback=self.index)
-    self.get('/user', callback=self.getUser)
     self.post('/user', callback=self.postUser)
     self.get('/logout', callback=self.logout)
+    self.post('/update', callback=self.updateUser)
 
     self.userdb = userdb.Userdb()
     
@@ -50,9 +50,6 @@ class Login(Bottle):
         kdict['message'] = 'ត្រូវ​មាន​ឈ្មោះ​អ្នក​ប្រើប្រាស់​និង​ពាក្យ​សំងាត់​។'
         return template('login', data=kdict)
 
-  def getUser(self):
-    return 'get user'
-
   def logout(self):
     kdict = deepcopy(config.kdict)
     username = request.get_cookie('logged-in', secret=kdict['secretKey'])
@@ -61,3 +58,13 @@ class Login(Bottle):
       
     response.delete_cookie('logged-in', path='/', secret=kdict['secretKey'])
     redirect('/')
+
+  def updateUser(self):
+    kdict = deepcopy(config.kdict)
+    username = request.get_cookie('logged-in', secret=kdict['secretKey'])
+    if username:
+      self.userdb.updateUser(username)
+      grade = self.userdb.checkUsername(username)
+      return {'grade':grade[2]}
+
+    

@@ -9,6 +9,7 @@
         </div>
       </div>
       <div>
+        <div id='info'></div>
         <div id="finger"></div>
         <div id="letter"></div>
       </div>
