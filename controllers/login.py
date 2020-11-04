@@ -70,7 +70,7 @@ class Login(Bottle):
 
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
-    #ff
+    
     if 'DYNO' in os.environ:
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
       options = {
