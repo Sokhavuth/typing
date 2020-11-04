@@ -70,13 +70,13 @@ class Login(Bottle):
 
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
-    filename = id+'.pdf'
+    
     if 'DYNO' in os.environ:
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
       options = {
         '--keep-relative-links': ''
       }
-      pdfkit.from_url('http://google.com', filename , configuration=config, options=options)
+      pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf' , configuration=config, options=options)
     else:
       pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf')
       return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
