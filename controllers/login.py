@@ -76,7 +76,7 @@ class Login(Bottle):
         '--keep-relative-links': ''
       }
       output_path=os.path.join('public/pdfs/', id+'.pdf')
-      pdfkit.from_url('http://google.com', ), output_path , configuration=config, options=options)
+      pdfkit.from_url('http://google.com', output_path , configuration=config, options=options)
     else:
       pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf')
 
