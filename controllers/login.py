@@ -72,7 +72,10 @@ class Login(Bottle):
     id = str(uuid.uuid4().int)
     
     if 'DYNO' in os.environ:
-      config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+      print ('loading wkhtmltopdf path on heroku')
+      WKHTMLTOPDF_CMD = subprocess.Popen(
+        ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
+        stdout=subprocess.PIPE).communicate()[0].strip()
       options = {
         '--keep-relative-links': ''
       }
