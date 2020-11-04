@@ -36,7 +36,7 @@ class Index(Bottle):
         return static_file(filename, root='./public/sounds')
 
     def loadPdf(self, filename):
-        return static_file(filename, root='./pdfs')
+        return static_file(filename, root='./public/pdfs')
 
     def checkLoggedIn(self, kdict):
         username = request.get_cookie('logged-in', secret=kdict['secretKey'])
