@@ -70,12 +70,9 @@ class Login(Bottle):
 
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
-    
+    #ff
     if 'DYNO' in os.environ:
-      print ('loading wkhtmltopdf path on heroku')
-      WKHTMLTOPDF_CMD = subprocess.Popen(
-        ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
-        stdout=subprocess.PIPE).communicate()[0].strip()
+      config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
       options = {
         '--keep-relative-links': ''
       }
