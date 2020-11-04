@@ -1,10 +1,9 @@
 #controllers/login.py
 import config
+from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
-from models.userdb import Userdb
-
-userdb = Userdb()
+from models import userdb
 
 class Login(Bottle):
   def __init__(self):
@@ -13,12 +12,16 @@ class Login(Bottle):
     self.get('/user', callback=self.getUser)
     self.post('/user', callback=self.postUser)
     self.get('/logout', callback=self.logout)
+
+    self.userdb = userdb.Userdb()
     
   def index(self):
-    config.kdict['blogTitle'] = "ចុះឈ្មោះ"
-    return template('login', data=config.kdict)
+    kdict = deepcopy(config.kdict)
+    kdict['blogTitle'] = "ចុះឈ្មោះ"
+    return template('login', data=kdict)
 
   def postUser(self):
+    kdict = deepcopy(config.kdict)
     username = request.forms.getunicode('fusername')
     password = request.forms.getunicode('fpassword')
     email = request.forms.getunicode('femail')
@@ -26,31 +29,31 @@ class Login(Bottle):
     checkEmail = verify_email(email)
 
     if checkEmail and username and password:
-      result = userdb.checkUser(username, password, email)
+      result = self.userdb.checkUser(username, password, email)
       if result:
-        config.kdict['user'] = result
+        response.set_cookie('logged-in', result[0], path='/', secret=kdict['secretKey'])
         redirect('/')
       else:
-        result = userdb.checkUsername(username)
+        result = self.userdb.checkUsername(username)
         if not result:
-          userdb.insert(username, password, email, 1, False)
-          result = userdb.checkUser(username, password, email)
-          config.kdict['user'] = result
+          response.set_cookie('logged-in', username, path='/', secret=kdict['secretKey'])
+          self.userdb.insert(username, password, email, 1, False)
           redirect('/')
         else:
-          config.kdict['message'] = 'ឈ្មោះ​អ្នក​ប្រើប្រាស់​នេះ​ត្រូវ​បាន​គេប្រើ​រួច​ហើយ​។'
-          redirect('/login')
+          kdict['message'] = 'ឈ្មោះ​អ្នក​ប្រើប្រាស់​នេះ​ត្រូវ​បាន​គេប្រើ​រួច​ហើយ​។'
+          return template('login', data=kdict)
     else:
       if not checkEmail:
-        config.kdict['message'] = 'Email របស់​លោក​អ្នក​មិនត្រឹមត្រូវ​ទេ។'
-        redirect('/login')
+        kdict['message'] = 'Email របស់​លោក​អ្នក​មិនត្រឹមត្រូវ​ទេ។'
+        return template('login', data=kdict)
       elif not (username or password):
-        config.kdict['message'] = 'ត្រូវ​មាន​ឈ្មោះ​អ្នក​ប្រើប្រាស់​និង​ពាក្យ​សំងាត់​។'
-        redirect('/login')
+        kdict['message'] = 'ត្រូវ​មាន​ឈ្មោះ​អ្នក​ប្រើប្រាស់​និង​ពាក្យ​សំងាត់​។'
+        return template('login', data=kdict)
 
   def getUser(self):
     return 'get user'
 
   def logout(self):
-    config.kdict['user'] = ('ភ្ញៀវ', 'អត់មាន', 1)
+    kdict = deepcopy(config.kdict)
+    response.delete_cookie('logged-in', path='/', secret=kdict['secretKey'])
     redirect('/')

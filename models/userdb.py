@@ -59,7 +59,7 @@ class Userdb():
   def checkUsername(self, username):
     self.setConection()
 
-    SQL = "SELECT USERNAME FROM TYPERS WHERE USERNAME = %s LIMIT 1"
+    SQL = "SELECT USERNAME, PASSWORD, GRADE FROM TYPERS WHERE USERNAME = %s LIMIT 1"
     self.cursor.execute(SQL, (username,))
     result = self.cursor.fetchone()
     

@@ -22,7 +22,7 @@
           %include('./partials/menu.tpl')
           <span style="text-align:right;" class="wrapper">
             <span style="text-align: right;" class="login"><a href="/login">ចុះ​ឈ្មោះ</a></span>
-            <span style="text-align: right;" class="login"><a href="/login/logout">| លុប​ឈ្មោះ</a></span>
+            <span style="text-align: right;" class="login"><a href="login/logout">| លុប​ឈ្មោះ</a></span>
           </span>
         </div>
       </div>

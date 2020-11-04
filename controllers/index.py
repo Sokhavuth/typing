@@ -1,7 +1,8 @@
 #controllers/index.py
 import config
+from copy import deepcopy
 from bottle import Bottle, template, static_file, request
-from models import lesson
+from models import lesson, userdb
 
 class Index(Bottle):
     def __init__(self):
@@ -15,6 +16,8 @@ class Index(Bottle):
         self.route('/', callback=self.index)
         self.route('/lesson/<id:int>', callback=self.lesson)
         self.route('/practice/<id:int>', callback=self.practice)
+
+        self.userdb = userdb.Userdb()
 
     def loadImage(self, filename):
         return static_file(filename, root='./public/images')
@@ -31,25 +34,32 @@ class Index(Bottle):
     def loadSound(self, filename):
         return static_file(filename, root='./public/sounds')
 
-    def index(self):
-        config.kdict['blogTitle'] = "រៀន​វាយ​អក្សរ​ខ្មែរ"
-        practice = []
-        for v in range(8):
-            practice += lesson.__dict__['lesson'+str(v+1)]
+    def checkLoggedIn(self, kdict):
+        username = request.get_cookie('logged-in', secret=kdict['secretKey'])
+        if username:
+            result = self.userdb.checkUsername(username)
+            kdict['user'] = result
 
-        config.kdict['lesson'] = practice
-        return template('index', data=config.kdict)
+    def index(self):
+        kdict = deepcopy(config.kdict)
+        kdict['blogTitle'] = "រៀន​វាយ​អក្សរ​ខ្មែរ"
+        self.checkLoggedIn(kdict)
+        return template('index', data=kdict)
 
     def lesson(self, id):
-        config.kdict['blogTitle'] = 'មេរៀន​ទី '+config.kdict['KhmerNumber'][id]
-        config.kdict['lesson'] = lesson.__dict__['lesson'+str(id)]
-        return template('lesson', data=config.kdict)
+        kdict = deepcopy(config.kdict)
+        kdict['blogTitle'] = 'មេរៀន​ទី '+kdict['KhmerNumber'][id]
+        self.checkLoggedIn(kdict)
+        kdict['lesson'] = lesson.__dict__['lesson'+str(id)]
+        return template('lesson', data=kdict)
 
     def practice(self, id):
-        config.kdict['blogTitle'] = 'លំហាត់ទី '+config.kdict['KhmerNumber'][id]
+        kdict = deepcopy(config.kdict)
+        kdict['blogTitle'] = 'លំហាត់ទី '+kdict['KhmerNumber'][id]
+        self.checkLoggedIn(kdict)
         practice = []
         for v in range(id):
             practice += lesson.__dict__['lesson'+str(v+1)]
 
-        config.kdict['lesson'] = practice
-        return template('practice', data=config.kdict)
+        kdict['lesson'] = practice
+        return template('practice', data=kdict)
