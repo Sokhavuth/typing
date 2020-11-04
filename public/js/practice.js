@@ -114,10 +114,11 @@ class Typing{
   updateLevel(){
     $.post("login/update",
       function(data, status){
-        if(status == "success")
-        var grade = typing.toKhNum(data.grade);
-        $('#info').html(`សូម​អបអរ​សាទ​ដោយ​អ្នក​បាន​​ឆ្លង​ចូល​កំរឹត​ទី ${grade} ហើយ!!`);
-        $('#level span').html(grade);
+        if(status == "success"){
+          var grade = typing.toKhNum(data.grade);
+          $('#info').html(`សូម​អបអរ​សាទ​ដោយ​អ្នក​បាន​​ឆ្លង​ចូល​កំរឹត​ទី ${grade} ហើយ!!`);
+          $('#level span').html(grade);
+        }
      });
   }
 }//end of class

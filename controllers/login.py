@@ -66,5 +66,3 @@ class Login(Bottle):
       self.userdb.updateUser(username)
       grade = self.userdb.checkUsername(username)
       return {'grade':grade[2]}
-
-    
