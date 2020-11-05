@@ -74,7 +74,7 @@ class Login(Bottle):
     if 'DYNO' in os.environ:
       
       pdf = pydf.generate_pdf(certificate.content)
-      with open(os.getcwd()+'public/pdfs/'+id+'.pdf', 'wb') as f:
+      with open(os.getcwd()+'/public/pdfs/'+id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
     
