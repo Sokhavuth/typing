@@ -72,7 +72,14 @@ class Login(Bottle):
     id = str(uuid.uuid4().int)
     
     if 'DYNO' in os.environ:
+      '''
       pdf = pydf.generate_pdf(certificate.content)
+      with open('public/pdfs/'+id+'.pdf', 'wb') as f:
+        f.write(pdf)
+        f.close()
+      '''
+      config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+      pdf = pdfkit.from_string(certificate.content, False, configuration=config)
       with open('public/pdfs/'+id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
