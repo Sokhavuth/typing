@@ -1,5 +1,5 @@
 #controllers/login.py
-import config, uuid
+import config, uuid, pydf
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
@@ -70,8 +70,8 @@ class Login(Bottle):
 
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
-    import pydf
-    pdf = pydf.generate_pdf('<h1>this is html</h1>')
+    
+    pdf = pydf.generate_pdf('<h1 style="text-align:center;font:16px/1.5 Moul;">នេះជា​លិខិតបញ្ជាក់ការសិក្សា​របស់​អ្នក</h1>')
     with open('public/pdfs/'+id+'.pdf', 'wb') as f:
       f.write(pdf)
       f.close()
