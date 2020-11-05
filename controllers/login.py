@@ -71,7 +71,7 @@ class Login(Bottle):
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
     
-    pdf = pydf.generate_pdf('<h1 style="text-align:center;font:16px/1.5 Moul;">នេះជា​លិខិតបញ្ជាក់ការសិក្សា​របស់​អ្នក</h1>')
+    pdf = pydf.generate_pdf('<h1 style="text-align:center;">នេះជា​លិខិតបញ្ជាក់ការសិក្សា​របស់​អ្នក</h1>')
     with open('public/pdfs/'+id+'.pdf', 'wb') as f:
       f.write(pdf)
       f.close()
