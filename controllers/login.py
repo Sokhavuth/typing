@@ -72,10 +72,9 @@ class Login(Bottle):
     id = str(uuid.uuid4().int)
     
     if 'DYNO' in os.environ:
-      '''
-      f = open('public/pdfs/'+id+'.pdf', "a")
+      
       pdf = pydf.generate_pdf(certificate.content)
-      with open('public/pdfs/'+id+'.pdf', 'wb') as f:
+      with open(os.getcwd()+'public/pdfs/'+id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
     
@@ -85,7 +84,7 @@ class Login(Bottle):
       with open(os.getcwd()+'/public/pdfs/'+id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
-      
+      '''
     else:
       pdf = pdfkit.from_string(certificate.content, False)
       with open(os.getcwd()+'/public/pdfs/'+id+'.pdf', 'wb') as f:
