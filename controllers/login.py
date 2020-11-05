@@ -97,7 +97,7 @@ class Login(Bottle):
       with open(rootPath + id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
-
+#
     else:
       pdf = pdfkit.from_string(template, False, options=options)
       with open(rootPath + id+'.pdf', 'wb') as f:
