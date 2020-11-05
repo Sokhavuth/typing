@@ -97,7 +97,7 @@ class Login(Bottle):
     
     if 'DYNO' in os.environ:
       
-      pdf = pydf.generate_pdf(template, orientation='Landscape')
+      pdf = pydf.generate_pdf(template, options=options)
       with open(rootPath + id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
