@@ -3,7 +3,7 @@ import config, os, uuid, pydf, pdfkit
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
-from models import userdb
+from models import userdb, certificate
 
 class Login(Bottle):
   def __init__(self):
@@ -70,18 +70,17 @@ class Login(Bottle):
 
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
-    '''
-    pdf = pydf.generate_pdf('<h1 style="text-align:center;">នេះជា​លិខិតបញ្ជាក់ការសិក្សា​របស់​អ្នក</h1>')
-    with open('public/pdfs/'+id+'.pdf', 'wb') as f:
-      f.write(pdf)
-      f.close()
-    '''
-    #
+    
     if 'DYNO' in os.environ:
-      config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-      pdfkit.from_url('https://www.google.co.in/','public/pdfs/vuth.pdf', configuration=config)
+      pdf = pydf.generate_pdf(certificate.content)
+      with open('public/pdfs/'+id+'.pdf', 'wb') as f:
+        f.write(pdf)
+        f.close()
     else:
-      pdfkit.from_url('https://www.google.co.in/','public/pdfs/'+id+'.pdf')
+      pdf = pdfkit.from_string(certificate.content, False)
+      with open('public/pdfs/'+id+'.pdf', 'wb') as f:
+        f.write(pdf)
+        f.close()
 
     return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
     
