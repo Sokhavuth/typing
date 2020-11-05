@@ -83,7 +83,6 @@ class Login(Bottle):
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
     rootPath = os.getcwd()+'/public/pdfs/'
-    f = open('public/pdfs/' + id+'.pdf')
     pdfFile = '/static/pdfs/' + id+'.pdf'
     template = self.template.substitute()
     options = {
@@ -98,8 +97,8 @@ class Login(Bottle):
     
     if 'DYNO' in os.environ:
       
-      pdf = pydf.generate_pdf(template, **options)
-      with open('public/pdfs/' + id+'.pdf', 'wb') as f:
+      pdf = pydf.generate_pdf(template)
+      with open(rootPath + id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
