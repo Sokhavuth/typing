@@ -1,5 +1,5 @@
 #controllers/login.py
-import config, pdfkit, uuid, os
+import config, uuid
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
@@ -70,14 +70,11 @@ class Login(Bottle):
 
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
-    #ff
-    if 'DYNO' in os.environ:
-      config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-      options = {
-        '--keep-relative-links': ''
-      }
-      pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf' , configuration=config, options=options)
-    else:
-      pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf')
-      return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
+    import pydf
+    pdf = pydf.generate_pdf('<h1>this is html</h1>')
+    with open('test_doc.pdf', 'wb') as f:
+      f.write(pdf)
+    
+    #pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf')
+    #return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
     
