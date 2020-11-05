@@ -72,14 +72,15 @@ class Login(Bottle):
         return {'grade':grade[2]}
       elif grade[2] == 8:
         self.createPdf(username)
+        webbrowser.open(self.pdfFile, new=0)
         return {'grade':grade[2]}
       else:
         return {'grade':grade[2]}
-      print(grade[2])
       
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
     rootPath = os.getcwd()+'/public/pdfs/'
+    self.pdfFile = rootPath + id+'.pdf'
     template = self.template.substitute()
     options = {
       'page-size': 'Letter',
@@ -92,7 +93,7 @@ class Login(Bottle):
     }
     
     if 'DYNO' in os.environ:
-      pdf = pydf.generate_pdf('<h1>this is html</h1>')
+      pdf = pydf.generate_pdf(template)
       with open(rootPath + id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
