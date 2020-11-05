@@ -87,7 +87,6 @@ class Typing{
     var minute = 0;
     var hour = 0;
     this.minuteTest = 0;
-    this.callNextLevel = true;
     
     this.clock = setInterval(() => {
       $('#timelapse .second').html(this.toKhNum(++second));
@@ -103,22 +102,19 @@ class Typing{
       }
 
       if((this.minuteTest <= 2) && (this.scoreLetter >= 5) && (this.mistake <= 10))
-        if(this.callNextLevel){
-          this.updateLevel();
-        }
-
+        this.updateLevel();
     }, 1000);
   }
 
   updateLevel(){
-    clearInterval(this.clock);
-    this.callNextLevel = false;
-    $.post("login/update",
+    clearInterval(this.clock)
+    $.get("login/update",
       function(data, status){
         if(status == "success"){
           var grade = typing.toKhNum(data.grade);
           $('#info').html(`សូម​អបអរ​សាទ​ដោយ​អ្នក​បាន​​ឆ្លង​ចូល​កំរឹត​ទី ${grade} ហើយ!!`);
           $('#level span').html(grade);
+          document.getElementById('level').children[0].innerHTML = grade;
         }
      });
   }

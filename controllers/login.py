@@ -1,5 +1,5 @@
 #controllers/login.py
-import config, os, uuid, pydf, pdfkit
+import config, os, uuid, pydf, pdfkit, webbrowser
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
@@ -11,8 +11,8 @@ class Login(Bottle):
     super().__init__()
     self.get('/', callback=self.index)
     self.post('/user', callback=self.postUser)
+    self.get('/update', callback=self.updateUser)
     self.get('/logout', callback=self.logout)
-    self.post('/update', callback=self.updateUser)
     self.get('/pdf', callback=self.createPdf)
 
     self.userdb = userdb.Userdb()
@@ -75,6 +75,7 @@ class Login(Bottle):
         return {'grade':grade[2]}
       else:
         return {'grade':grade[2]}
+      print(grade[2])
       
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
@@ -89,12 +90,12 @@ class Login(Bottle):
       'encoding': "UTF-8",
       'orientation': 'Landscape'
     }
-    import webbrowser
+    
     if 'DYNO' in os.environ:
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
       pdfkit.from_string(template,  rootPath + id+'.pdf', options=options, configuration=config)
     else:
       pdfkit.from_string(template, rootPath + id+'.pdf', options=options)
-      
-    return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
+
+    webbrowser.open(rootPath + id+'.pdf', new=0)
     
