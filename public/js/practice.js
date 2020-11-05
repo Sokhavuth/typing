@@ -86,10 +86,10 @@ class Typing{
     var second = 0;
     var minute = 0;
     var hour = 0;
-    var minuteTest = 0;
-    var callNextLevel = true;
+    this.minuteTest = 0;
+    this.callNextLevel = true;
     
-    var clock = setInterval(() => {
+    this.clock = setInterval(() => {
       $('#timelapse .second').html(this.toKhNum(++second));
       if(second == 60){
         second = 0;
@@ -98,20 +98,21 @@ class Typing{
 
       if(minute == 60){
         minute = 0;
-        ++minuteTest;
+        ++this.minuteTest;
         $('#timelapse .hour').html(this.toKhNum(++hour));
       }
 
-      if((minuteTest <= 2) && (this.scoreLetter >= 480) && (this.mistake <= 10))
-        if(callNextLevel){
+      if((this.minuteTest <= 2) && (this.scoreLetter >= 5) && (this.mistake <= 10))
+        if(this.callNextLevel){
           this.updateLevel();
-          callNextLevel = false;
         }
 
     }, 1000);
   }
 
   updateLevel(){
+    clearInterval(this.clock);
+    this.callNextLevel = false;
     $.post("login/update",
       function(data, status){
         if(status == "success"){

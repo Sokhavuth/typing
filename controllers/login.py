@@ -66,29 +66,35 @@ class Login(Bottle):
     kdict = deepcopy(config.kdict)
     username = request.get_cookie('logged-in', secret=kdict['secretKey'])
     if username:
-      self.userdb.updateUser(username)
       grade = self.userdb.checkUsername(username)
-      return {'grade':grade[2]}
-
-  def createPdf(self):
+      if grade[2] < 8:
+        self.userdb.updateUser(username)
+        return {'grade':grade[2]}
+      elif grade[2] == 8:
+        self.createPdf(username)
+        return {'grade':grade[2]}
+      else:
+        return {'grade':grade[2]}
+      
+  def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
     rootPath = os.getcwd()+'/public/pdfs/'
     template = self.template.substitute()
     options = {
       'page-size': 'Letter',
-      'margin-top': '0.75in',
-      'margin-right': '0.75in',
-      'margin-bottom': '0.75in',
-      'margin-left': '0.75in',
-      'encoding': "UTF-8"
+      'margin-top': '0',
+      'margin-right': '0',
+      'margin-bottom': '0',
+      'margin-left': '0',
+      'encoding': "UTF-8",
+      'orientation': 'Landscape'
     }
-
+    import webbrowser
     if 'DYNO' in os.environ:
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-      pdf = pdfkit.from_string(template,  rootPath + id+'.pdf', options=options, configuration=config)
-      
+      pdfkit.from_string(template,  rootPath + id+'.pdf', options=options, configuration=config)
     else:
-      pdf = pdfkit.from_string(str(template), rootPath + id+'.pdf', options=options)
+      pdfkit.from_string(template, rootPath + id+'.pdf', options=options)
       
     return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
     

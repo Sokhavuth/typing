@@ -43,6 +43,9 @@ class Index(Bottle):
         if username:
             result = self.userdb.checkUsername(username)
             kdict['user'] = result
+            kdict['username'] = username
+        else:
+            kdict['username'] = None
 
     def index(self):
         kdict = deepcopy(config.kdict)
@@ -61,6 +64,9 @@ class Index(Bottle):
         kdict = deepcopy(config.kdict)
         kdict['blogTitle'] = 'លំហាត់ទី '+kdict['KhmerNumber'][id]
         self.checkLoggedIn(kdict)
+        if kdict['username']:
+            id = kdict['user'][2]
+
         practice = []
         for v in range(id):
             practice += lesson.__dict__['lesson'+str(v+1)]
