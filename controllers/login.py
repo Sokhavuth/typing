@@ -80,7 +80,7 @@ class Login(Bottle):
     
       '''
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-      pdf = pdfkit.from_string(os.getcwd()+'/public/pdfs/certificate.html', False, configuration=config)
+      pdf = pdfkit.from_file(os.getcwd()+'/public/pdfs/certificate.html', False, configuration=config)
       with open(os.getcwd()+'/public/pdfs/'+id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
