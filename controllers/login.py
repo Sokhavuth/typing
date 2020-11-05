@@ -72,9 +72,9 @@ class Login(Bottle):
     id = str(uuid.uuid4().int)
     import pydf
     pdf = pydf.generate_pdf('<h1>this is html</h1>')
-    with open('test_doc.pdf', 'wb') as f:
+    with open('public/pdfs/'+id+'.pdf', 'wb') as f:
       f.write(pdf)
+      f.close()
     
-    #pdfkit.from_url('http://google.com', 'public/pdfs/'+id+'.pdf')
-    #return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
+    return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
     
