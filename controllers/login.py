@@ -13,7 +13,7 @@ class Login(Bottle):
     self.post('/user', callback=self.postUser)
     self.get('/update', callback=self.updateUser)
     self.get('/logout', callback=self.logout)
-    self.get('/pdf', callback=self.createPdf)
+    self.get('/pdf', callback=self.getPdf)
 
     self.userdb = userdb.Userdb()
     self.template = Certificate()
@@ -71,16 +71,19 @@ class Login(Bottle):
         self.userdb.updateUser(username)
         return {'grade':grade[2]}
       elif grade[2] == 8:
-        self.createPdf(username)
-        webbrowser.open(self.pdfFile, new=0)
-        return {'grade':grade[2]}
+        pdfFile = self.createPdf(username)
+        return {'grade':grade[2], 'pdf':pdfFile}
       else:
         return {'grade':grade[2]}
+
+  def getPdf(self):
+    
+    pass
       
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
     rootPath = os.getcwd()+'/public/pdfs/'
-    self.pdfFile = rootPath + id+'.pdf'
+    pdfFile = '/static/pdfs/' + id+'.pdf'
     template = self.template.substitute()
     options = {
       'page-size': 'Letter',
@@ -93,6 +96,7 @@ class Login(Bottle):
     }
     
     if 'DYNO' in os.environ:
+      
       pdf = pydf.generate_pdf(template)
       with open(rootPath + id+'.pdf', 'wb') as f:
         f.write(pdf)
@@ -112,5 +116,6 @@ class Login(Bottle):
         f.write(pdf)
         f.close()
 
-    webbrowser.open(rootPath + id+'.pdf', new=0)
+    return pdfFile
     
+ 

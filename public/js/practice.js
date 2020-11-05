@@ -112,7 +112,11 @@ class Typing{
       function(data, status){
         if(status == "success"){
           var grade = typing.toKhNum(data.grade);
-          $('#info').html(`សូម​អបអរ​សាទ​ដោយ​អ្នក​បាន​​ឆ្លង​ចូល​កំរឹត​ទី ${grade} ហើយ!!`);
+          var message = `
+          <div>សូម​អបអរ​សាទ​ដោយ​អ្នក​បាន​​ឆ្លង​ចូល​កំរឹត​ទី ${grade} ហើយ!!</div
+          <a href="${data.pdf}">នេះ​ជា​លិខិត​បញ្ជាក​សមត្ថភាព​របស់​អ្នក​</a>
+          `
+          $('#info').html(`<a href="${data.pdf}">នេះ​ជា​លិខិត​បញ្ជាក​សមត្ថភាព​របស់​អ្នក​</a>`);
           $('#level span').html(grade);
           document.getElementById('level').children[0].innerHTML = grade;
         }
