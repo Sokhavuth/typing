@@ -71,8 +71,6 @@ class Login(Bottle):
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
     rootPath = os.getcwd()+'/public/pdfs/'
-    css = rootPath + '/public/fonts/setup.css'
-
     options = {
       'page-size': 'Letter',
       'margin-top': '0.75in',
@@ -92,7 +90,7 @@ class Login(Bottle):
       '''
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
       
-      pdf = pdfkit.from_file(rootPath + 'certificate.html', False, css=css, options=options, configuration=config)
+      pdf = pdfkit.from_file(rootPath + 'certificate.html', False, options=options, configuration=config)
       with open(rootPath + id +'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
