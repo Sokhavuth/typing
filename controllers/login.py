@@ -94,10 +94,10 @@ class Login(Bottle):
     if 'DYNO' in os.environ:
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
       pdf = pdfkit.from_string(template,  False, options=options, configuration=config)
-      with open(rootPath + id+'.pdf', 'wb') as f:
+      with open(r'public/pdfs/'+ id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
-#
+
     else:
       pdf = pdfkit.from_string(template, False, options=options)
       with open(rootPath + id+'.pdf', 'wb') as f:
