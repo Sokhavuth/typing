@@ -8,12 +8,12 @@ cffi==1.14.3
 cssselect2==0.4.1
 defusedxml==0.6.0
 html5lib==1.1
-pdfkit==0.6.1
 Pillow==8.0.1
 psycopg2==2.8.6
 pycares==3.1.1
 pycparser==2.20
 Pyphen==0.10.0
+python-pdf==0.37
 six==1.15.0
 tinycss2==1.1.0
 verify-email==2.4.1
