@@ -3,7 +3,8 @@ import config, os, uuid, pydf, pdfkit
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
-from models import userdb, certificate
+from models import userdb
+from models.certificate import Certificate
 
 class Login(Bottle):
   def __init__(self):
@@ -15,6 +16,7 @@ class Login(Bottle):
     self.get('/pdf', callback=self.createPdf)
 
     self.userdb = userdb.Userdb()
+    self.template = Certificate()
     
   def index(self):
     kdict = deepcopy(config.kdict)
@@ -68,9 +70,10 @@ class Login(Bottle):
       grade = self.userdb.checkUsername(username)
       return {'grade':grade[2]}
 
-  def createPdf(sefl):
+  def createPdf(self):
     id = str(uuid.uuid4().int)
     rootPath = os.getcwd()+'/public/pdfs/'
+    template = self.template.substitute()
     options = {
       'page-size': 'Letter',
       'margin-top': '0.75in',
@@ -81,25 +84,11 @@ class Login(Bottle):
     }
 
     if 'DYNO' in os.environ:
-      '''
-      pdf = pydf.generate_pdf(certificate.content)
-      with open(os.getcwd()+'/public/pdfs/'+id+'.pdf', 'wb') as f:
-        f.write(pdf)
-        f.close()
-    
-      '''
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-      
-      pdf = pdfkit.from_file(rootPath + 'certificate.html', False, options=options, configuration=config)
-      with open(rootPath + id +'.pdf', 'wb') as f:
-        f.write(pdf)
-        f.close()
+      pdf = pdfkit.from_string(template,  rootPath + id+'.pdf', options=options, configuration=config)
       
     else:
-      pdf = pdfkit.from_file(os.getcwd()+'/public/pdfs/certificate.html', False, options=options)
-      with open(rootPath + id+'.pdf', 'wb') as f:
-        f.write(pdf)
-        f.close()
-
+      pdf = pdfkit.from_string(str(template), rootPath + id+'.pdf', options=options)
+      
     return '<script>window.location="/static/pdfs/'+id+'.pdf"</script>'
     
