@@ -92,12 +92,18 @@ class Login(Bottle):
     }
     
     if 'DYNO' in os.environ:
+      pdf = pydf.generate_pdf('<h1>this is html</h1>')
+      with open('test_doc.pdf', 'wb') as f:
+        f.write(pdf)
+        f.close()
+
+    '''
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
       pdf = pdfkit.from_string(template,  False, options=options, configuration=config)
       with open(r'public/pdfs/'+ id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
-
+    '''
     else:
       pdf = pdfkit.from_string(template, False, options=options)
       with open(rootPath + id+'.pdf', 'wb') as f:
