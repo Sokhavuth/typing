@@ -76,6 +76,7 @@ class Login(Bottle):
       f.write(pdf)
       f.close()
     '''
+    #
     if 'DYNO' in os.environ:
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
       pdfkit.from_url('https://www.google.co.in/','public/pdfs/vuth.pdf', configuration=config)
