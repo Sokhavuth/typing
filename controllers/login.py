@@ -70,7 +70,16 @@ class Login(Bottle):
 
   def createPdf(sefl):
     id = str(uuid.uuid4().int)
-    
+    rootPath = os.getcwd()+'/public/pdfs/'
+    options = {
+      'page-size': 'Letter',
+      'margin-top': '0.75in',
+      'margin-right': '0.75in',
+      'margin-bottom': '0.75in',
+      'margin-left': '0.75in',
+      'encoding': "UTF-8"
+    }
+
     if 'DYNO' in os.environ:
       '''
       pdf = pydf.generate_pdf(certificate.content)
@@ -80,14 +89,15 @@ class Login(Bottle):
     
       '''
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-      pdf = pdfkit.from_file(os.getcwd()+'/public/pdfs/certificate.html', False, configuration=config)
-      with open(os.getcwd()+'/public/pdfs/'+id+'.pdf', 'wb') as f:
+      
+      pdf = pdfkit.from_file(rootPath + 'certificate.html', False, options=options, configuration=config)
+      with open(rootPath + id +'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
       
     else:
-      pdf = pdfkit.from_file(os.getcwd()+'/public/pdfs/certificate.html', False)
-      with open(os.getcwd()+'/public/pdfs/'+id+'.pdf', 'wb') as f:
+      pdf = pdfkit.from_file(os.getcwd()+'/public/pdfs/certificate.html', False, options=options)
+      with open(rootPath + id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
