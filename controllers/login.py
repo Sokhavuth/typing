@@ -93,9 +93,16 @@ class Login(Bottle):
     
     if 'DYNO' in os.environ:
       config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-      pdfkit.from_string(template,  rootPath + id+'.pdf', options=options, configuration=config)
+      pdf = pdfkit.from_string(template,  False, options=options, configuration=config)
+      with open(rootPath + id+'.pdf', 'wb') as f:
+        f.write(pdf)
+        f.close()
+
     else:
-      pdfkit.from_string(template, rootPath + id+'.pdf', options=options)
+      pdf = pdfkit.from_string(template, False, options=options)
+      with open(rootPath + id+'.pdf', 'wb') as f:
+        f.write(pdf)
+        f.close()
 
     webbrowser.open(rootPath + id+'.pdf', new=0)
     
