@@ -78,7 +78,7 @@ class Login(Bottle):
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
     rootPath = os.getcwd()+'/public/pdfs/'
-    pdfFile = '/static/pdfs/' + id+'.pdf'
+    pdfFile = '/static/pdfs/certificate.pdf'
     template = self.template.substitute()
     options = {
       'page-size': 'Letter',
