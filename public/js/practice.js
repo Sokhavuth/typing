@@ -109,7 +109,6 @@ class Typing{
   updateLevel(){
     clearInterval(this.clock);
     var level = $('#level span').html();
-    alert(level)
     $.post("login/update",
       {'level':level},
       function(data, status){
