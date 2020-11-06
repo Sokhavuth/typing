@@ -1,5 +1,5 @@
 #controllers/login.py
-import config, os, uuid, pydf
+import config, os, uuid, pydf, time
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
@@ -72,14 +72,15 @@ class Login(Bottle):
         grade = self.userdb.checkUsername(username)
         return {'grade':grade[2]}
       elif (grade[2] == 8) and (kdict['KhmerNumber'][grade[2]] == level):
-        self.createPdf(username)
-        return {'grade':grade[2], 'pdf':self.pdfFile}
+        pdfFile = self.createPdf(username)
+        time.sleep(.5)
+        return {'grade':grade[2], 'pdf':pdfFile}
       else:
         return {'grade':grade[2]}
       
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
-    self.pdfFile = '/static/pdfs/'+ id +'.pdf'
+    pdfFile = '/static/pdfs/'+ id +'.pdf'
 
     template = self.template.substitute()
     options = {
@@ -104,3 +105,9 @@ class Login(Bottle):
       with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
+
+      
+    return pdfFile
+
+
+    
