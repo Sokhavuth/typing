@@ -13,7 +13,6 @@ class Login(Bottle):
     self.post('/user', callback=self.postUser)
     self.get('/update', callback=self.updateUser)
     self.get('/logout', callback=self.logout)
-    self.get('/pdf', callback=self.getPdf)
 
     self.userdb = userdb.Userdb()
     self.template = Certificate()
@@ -75,10 +74,6 @@ class Login(Bottle):
         return {'grade':grade[2], 'pdf':pdfFile}
       else:
         return {'grade':grade[2]}
-
-  def getPdf(self):
-    
-    pass
       
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
@@ -96,7 +91,6 @@ class Login(Bottle):
     }
     
     if 'DYNO' in os.environ:
-      
       pdf = pydf.generate_pdf(template)
       with open(rootPath + id+'.pdf', 'wb') as f:
         f.write(pdf)
