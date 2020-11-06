@@ -101,8 +101,8 @@ class Login(Bottle):
     
     if 'DYNO' in os.environ:
       pdf = pydf.generate_pdf(template, **options)
-      time.sleep(1)
       with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
+        time.sleep(.5)
         f.write(pdf)
         f.close()
 
