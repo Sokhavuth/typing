@@ -77,7 +77,6 @@ class Login(Bottle):
       
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
-    rootPath = os.getcwd()+'public/pdfs/'
     pdfFile = '/static/pdfs/'+id+'.pdf'
     template = self.template.substitute()
     options = {
@@ -92,7 +91,6 @@ class Login(Bottle):
     
     if 'DYNO' in os.environ:
       pdf = pydf.generate_pdf(template, **options)
-      
       with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
@@ -100,7 +98,7 @@ class Login(Bottle):
     else:
       import pdfkit
       pdf = pdfkit.from_string(template, False, options=options)
-      with open(rootPath + id+'.pdf', 'wb') as f:
+      with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
