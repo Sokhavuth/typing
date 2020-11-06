@@ -1,5 +1,5 @@
 #controllers/login.py
-import config, os, uuid, pydf, time
+import config, os, uuid, pydf, asyncio, time
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
@@ -14,8 +14,14 @@ class Login(Bottle):
     self.post('/update', callback=self.updateUser)
     self.get('/logout', callback=self.logout)
 
+    self.get('/pdf', callback=self.getPdf)
+
     self.userdb = userdb.Userdb()
     self.template = Certificate()
+
+  def getPdf(self):
+    pdfFile = self.createPdf()
+    redirect(pdfFile)
     
   def index(self):
     kdict = deepcopy(config.kdict)
@@ -73,14 +79,15 @@ class Login(Bottle):
         return {'grade':grade[2]}
       elif (grade[2] == 8) and (kdict['KhmerNumber'][grade[2]] == level):
         pdfFile = self.createPdf(username)
-        time.sleep(.5)
+        time.sleep(.25)
         return {'grade':grade[2], 'pdf':pdfFile}
       else:
         return {'grade':grade[2]}
       
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
-    pdfFile = '/static/pdfs/'+ id +'.pdf'
+    #pdfFile = '/static/pdfs/'+ id +'.pdf'
+    pdfFile = '/static/pdfs/test.pdf'
 
     template = self.template.substitute()
     options = {
@@ -102,12 +109,9 @@ class Login(Bottle):
     else:
       import pdfkit
       pdf = pdfkit.from_string(template, False, options=options)
-      with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
+      #with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
+      with open('public/pdfs/test.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
-      
     return pdfFile
-
-
-    
