@@ -79,7 +79,7 @@ class Login(Bottle):
         return {'grade':grade[2]}
       elif (grade[2] == 8) and (kdict['KhmerNumber'][grade[2]] == level):
         pdfFile = self.createPdf(username)
-        time.sleep(.25)
+        time.sleep(.5)
         return {'grade':grade[2], 'pdf':pdfFile}
       else:
         return {'grade':grade[2]}
