@@ -13,7 +13,6 @@ Pillow==8.0.1
 psycopg2==2.8.6
 pycares==3.1.1
 pycparser==2.20
-pydf==12
 Pyphen==0.10.0
 python-pdf==0.37
 six==1.15.0
