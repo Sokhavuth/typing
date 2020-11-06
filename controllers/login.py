@@ -1,5 +1,5 @@
 #controllers/login.py
-import config, os, uuid, pydf, pdfkit, webbrowser
+import config, os, uuid, pydf, webbrowser
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
@@ -91,12 +91,13 @@ class Login(Bottle):
     }
     
     if 'DYNO' in os.environ:
-      pdf = pydf.generate_pdf(template)
+      pdf = pydf.generate_pdf(template, **options)
       with open(rootPath + id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
     else:
+      import pdfkit
       pdf = pdfkit.from_string(template, False, options=options)
       with open(rootPath + id+'.pdf', 'wb') as f:
         f.write(pdf)
