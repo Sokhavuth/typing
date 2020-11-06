@@ -69,16 +69,17 @@ class Login(Bottle):
       grade = self.userdb.checkUsername(username)
       if (grade[2] < 8) and (kdict['KhmerNumber'][grade[2]] == level):
         self.userdb.updateUser(username)
+        grade = self.userdb.checkUsername(username)
         return {'grade':grade[2]}
       elif (grade[2] == 8) and (kdict['KhmerNumber'][grade[2]] == level):
-        pdfFile = self.createPdf(username)
-        return {'grade':grade[2], 'pdf':pdfFile}
+        self.createPdf(username)
+        return {'grade':grade[2], 'pdf':self.pdfFile}
       else:
         return {'grade':grade[2]}
       
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
-    pdfFile = '/static/pdfs/'+ id +'.pdf'
+    self.pdfFile = '/static/pdfs/'+ id +'.pdf'
 
     template = self.template.substitute()
     options = {
@@ -103,6 +104,3 @@ class Login(Bottle):
       with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
-
-    return pdfFile
-    
