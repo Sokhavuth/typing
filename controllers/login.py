@@ -14,14 +14,8 @@ class Login(Bottle):
     self.post('/update', callback=self.updateUser)
     self.get('/logout', callback=self.logout)
 
-    self.get('/pdf', callback=self.getPdf)
-
     self.userdb = userdb.Userdb()
     self.template = Certificate()
-
-  def getPdf(self):
-    pdfFile = self.createPdf()
-    redirect(pdfFile)
     
   def index(self):
     kdict = deepcopy(config.kdict)
@@ -110,6 +104,7 @@ class Login(Bottle):
       import pdfkit
       pdf = pdfkit.from_string(template, False, options=options)
       with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
+        time.sleep(.5)
         f.write(pdf)
         f.close()
 
