@@ -1,5 +1,5 @@
 #controllers/login.py
-import config, os, uuid, pydf, webbrowser
+import config, os, uuid, pydf
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
@@ -11,7 +11,7 @@ class Login(Bottle):
     super().__init__()
     self.get('/', callback=self.index)
     self.post('/user', callback=self.postUser)
-    self.get('/update', callback=self.updateUser)
+    self.post('/update', callback=self.updateUser)
     self.get('/logout', callback=self.logout)
 
     self.userdb = userdb.Userdb()
@@ -63,13 +63,14 @@ class Login(Bottle):
 
   def updateUser(self):
     kdict = deepcopy(config.kdict)
+    level = request.params.getunicode('level')
     username = request.get_cookie('logged-in', secret=kdict['secretKey'])
-    if username:
+    if username and level:
       grade = self.userdb.checkUsername(username)
-      if grade[2] < 8:
+      if (grade[2] < 8) and (kdict['KhmerNumber'][grade[2]] == level):
         self.userdb.updateUser(username)
         return {'grade':grade[2]}
-      elif grade[2] == 8:
+      elif (grade[2] == 8) and (kdict['KhmerNumber'][grade[2]] == level):
         pdfFile = self.createPdf(username)
         return {'grade':grade[2], 'pdf':pdfFile}
       else:

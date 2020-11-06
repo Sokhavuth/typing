@@ -71,12 +71,12 @@ class Typing{
   }
 
   toKhNum(number){
-    const khNum = {'0':'០', '1':'១', '2':'២', '3':'៣', '4':'៤', '5':'៥', '6':'៦', '7':'៧', '8':'៨', '9':'៩'};
+    this.khNum = {'0':'០', '1':'១', '2':'២', '3':'៣', '4':'៤', '5':'៥', '6':'៦', '7':'៧', '8':'៨', '9':'៩'};
     var stringNum = number.toString();
     var khNumString = '';
    
     for(var i in stringNum){
-      khNumString += khNum[stringNum[i]];
+      khNumString += this.khNum[stringNum[i]];
     }
    
     return khNumString;
@@ -107,15 +107,18 @@ class Typing{
   }
 
   updateLevel(){
-    clearInterval(this.clock)
-    $.get("login/update",
+    clearInterval(this.clock);
+    var level = $('#level span').html();
+    alert(level)
+    $.post("login/update",
+      {'level':level},
       function(data, status){
         if(status == "success"){
           var grade = typing.toKhNum(data.grade);
           var message = `<div>សូម​អបអរ​សាទ​ដោយ​អ្នក​បាន​​ឆ្លង​ចូល​កំរឹត​ទី ${grade} ហើយ!!</div>`;
           if(data.grade === 8){
             message = `<div>សូម​អបអរ​សាទ​ដោយ​អ្នក​បានបញ្ចប់​​កំរឹត​ទី ${grade} ដែល​ជា​កំរឹត​ចុង​ក្រោយ!!</div>
-                      <a target="_blank" href="${data.pdf}">នេះ​ជា​លិខិត​បញ្ជាក​សមត្ថភាព​របស់​អ្នក​</a>`;
+                      <a target="_blank" href="${data.pdf}">នេះ​ជា​លិខិត​បញ្ជាក់​សមត្ថភាព​របស់​អ្នក​</a>`;
           }
           $('#info').html(message);
           $('#level span').html(grade);
