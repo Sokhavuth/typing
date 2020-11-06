@@ -86,8 +86,7 @@ class Login(Bottle):
       
   def createPdf(self, username=0):
     id = str(uuid.uuid4().int)
-    #pdfFile = '/static/pdfs/'+ id +'.pdf'
-    pdfFile = '/static/pdfs/test.pdf'
+    pdfFile = '/static/pdfs/'+ id +'.pdf'
 
     template = self.template.substitute()
     options = {
@@ -109,8 +108,7 @@ class Login(Bottle):
     else:
       import pdfkit
       pdf = pdfkit.from_string(template, False, options=options)
-      #with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
-      with open('public/pdfs/test.pdf', 'wb') as f:
+      with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
