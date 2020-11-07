@@ -16,17 +16,9 @@ class Login(Bottle):
     self.post('/update', callback=self.updateUser)
     self.get('/logout', callback=self.logout)
 
-    self.get('/pdf', callback=self.getPdf)
-
     self.userdb = userdb.Userdb()
     self.template = Certificate()
 
-  def getPdf(self):
-    kdict = deepcopy(config.kdict)
-    username = request.get_cookie('logged-in', secret=kdict['secretKey'])
-    pdfFile = self.createPdf(username)
-    redirect(pdfFile)
-    
   def index(self):
     kdict = deepcopy(config.kdict)
     kdict['blogTitle'] = "ចុះឈ្មោះ"
@@ -101,8 +93,7 @@ class Login(Bottle):
     print(year)
     year = kdict['KhmerNumber'][int(year[0])]+kdict['KhmerNumber'][int(year[1])]+kdict['KhmerNumber'][int(year[2])]+kdict['KhmerNumber'][int(year[3])]
     date = day+ ' ' + ' ' +month + ' ' + year
-    #pdfFile = '/static/pdfs/'+ id +'.pdf'
-    pdfFile = '/static/pdfs/test.pdf'
+    pdfFile = '/static/pdfs/'+ id +'.pdf'
 
     template = self.template.substitute(username=username, date=date)
     options = {
@@ -125,8 +116,7 @@ class Login(Bottle):
     else:
       import pdfkit
       pdf = pdfkit.from_string(template, False, options=options)
-      #with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
-      with open('public/pdfs/test.pdf', 'wb') as f:
+      with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
