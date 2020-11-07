@@ -93,9 +93,12 @@ class Login(Bottle):
     print(year)
     year = kdict['KhmerNumber'][int(year[0])]+kdict['KhmerNumber'][int(year[1])]+kdict['KhmerNumber'][int(year[2])]+kdict['KhmerNumber'][int(year[3])]
     date = day+ ' ' + ' ' +month + ' ' + year
-    pdfFile = '/static/pdfs/certificate.pdf'
+    pdfFile = '/static/pdfs/'+id+'.pdf'
 
-    template = self.template.substitute(username=username, date=date)
+    async def generateTemplate():
+      template = self.template.substitute(username=username, date=date)
+      return template
+
     options = {
       'page-size': 'Letter',
       'margin-top': '0',
@@ -107,16 +110,21 @@ class Login(Bottle):
     }
     
     if 'DYNO' in os.environ:
-      pdf = pydf.generate_pdf(template, **options)
-      with open('public/pdfs/certificat.pdf', 'wb') as f:
-        time.sleep(.5)
-        f.write(pdf)
-        f.close()
+      async def certificateGenerate():
+        await generateTemplate()
+        pdf = pydf.generate_pdf(template, **options)
+        with open('public/pdfs/'+id+'.pdf', 'wb') as f:
+          time.sleep(.5)
+          f.write(pdf)
+          f.close()
+
+      asyncio.run(certificateGenerate())
 
     else:
       import pdfkit
+      template = self.template.substitute(username=username, date=date)
       pdf = pdfkit.from_string(template, False, options=options)
-      with open('public/pdfs/certificate.pdf', 'wb') as f:
+      with open('public/pdfs/'+id+'.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
