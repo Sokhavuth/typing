@@ -88,7 +88,7 @@ class Login(Bottle):
     day = date[:2]
     day = kdict['KhmerNumber'][int(day[0])]+kdict['KhmerNumber'][int(day[1])]
     month = date[2:4]
-    month = kdict['KhmerMonth'][int(month)]
+    month = kdict['KhmerMonth'][int(month)-1]
     year = date[4:]
     print(year)
     year = kdict['KhmerNumber'][int(year[0])]+kdict['KhmerNumber'][int(year[1])]+kdict['KhmerNumber'][int(year[2])]+kdict['KhmerNumber'][int(year[3])]
