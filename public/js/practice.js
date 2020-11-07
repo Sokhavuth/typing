@@ -101,7 +101,7 @@ class Typing{
         $('#timelapse .hour').html(this.toKhNum(++hour));
       }
 
-      if((this.minuteTest <= 2) && (this.scoreLetter >= 5) && (this.mistake <= 10))
+      if((this.minuteTest <= 2) && (this.scoreLetter >= 480) && (this.mistake <= 10))
         this.updateLevel();
     }, 1000);
   }
