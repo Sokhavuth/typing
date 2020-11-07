@@ -114,7 +114,6 @@ class Login(Bottle):
         template = await generateTemplate()
         pdf = pydf.generate_pdf(template, **options)
         with open('public/pdfs/'+id+'.pdf', 'wb') as f:
-          time.sleep(.25)
           f.write(pdf)
           f.close()
 
