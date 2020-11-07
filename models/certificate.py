@@ -106,6 +106,7 @@ template = '''
   position: absolute;
   top: 47%;
   left: 36%;
+  text-transform: uppercase;
 }
 #signature,#date{
   font: 18px/1.75 OdorMeanChey;
@@ -126,13 +127,13 @@ template = '''
     <img id="logo" src="https://1.bp.blogspot.com/-spe4NrFhtfQ/X6ViOi1ckxI/AAAAAAABqsA/lBvElZGFMpMR4_ttai4RIYW133AL84QLACLcBGAsYHQ/s0/khmerweb.png" />
     <div id="teamwork">ក្រុមការងារ​នៃ​គេហទំព័ Khmer Web</div>
     <div id='statement'>យើង​ខ្ញុំ​ជា​ក្រុម​ការងារ​នៃ​គេហទំព័រ Khmer Web សូម​ប្រគល់​​លិខិត​បញ្ជាក់​សមត្ថភាព​នេះជូន​ដល់ៈ</div>
-    <div id="username">SOKHAVUTH</div>
-    <div id="statement1">ដោយ​បាន​បញ្ចប់​កំរឹត​ទាំង ៨ នៃ​កម្មវិធី​រៀន​វាយ​អក្សរ​ខ្មែរ ដែល​ត្រូវ​បាន​រៀបចំឡើង​ដោយ​ក្រុម​ការងារ Khmer Web ។</div>
+    <div id="username">${username}</div>
+    <div id="statement1">ដែល​បាន​បញ្ចប់​កំរឹត​ទាំង ៨ នៃ​កម្មវិធី​រៀន​វាយ​អក្សរ​ខ្មែរ​ ដែល​ត្រូវ​បាន​រៀបចំឡើង​ដោយ​ក្រុម​ការងារ Khmer Web ។</div>
     <div id="signature">
     <div>ប្រធានក្រុមការងារ Khmer Web</div>
     <div>Sokhavuth TIN</div>
     </div>
-    <div id="date">៦ វិច្ឆិកា ២០២០</div>
+    <div id="date">${date}</div>
     </div>
   </body>
 </html>

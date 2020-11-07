@@ -1,5 +1,7 @@
 #controllers/login.py
 import config, os, uuid, pydf, asyncio, time
+from pytz import timezone
+from datetime import datetime 
 from copy import deepcopy
 from bottle import Bottle, template, request, response, redirect
 from verify_email import verify_email
@@ -14,8 +16,16 @@ class Login(Bottle):
     self.post('/update', callback=self.updateUser)
     self.get('/logout', callback=self.logout)
 
+    self.get('/pdf', callback=self.getPdf)
+
     self.userdb = userdb.Userdb()
     self.template = Certificate()
+
+  def getPdf(self):
+    kdict = deepcopy(config.kdict)
+    username = request.get_cookie('logged-in', secret=kdict['secretKey'])
+    pdfFile = self.createPdf(username)
+    redirect(pdfFile)
     
   def index(self):
     kdict = deepcopy(config.kdict)
@@ -78,11 +88,23 @@ class Login(Bottle):
       else:
         return {'grade':grade[2]}
       
-  def createPdf(self, username=0):
+  def createPdf(self, username):
+    kdict = deepcopy(config.kdict)
     id = str(uuid.uuid4().int)
-    pdfFile = '/static/pdfs/'+ id +'.pdf'
+    khtz = timezone('Asia/Phnom_Penh')
+    date = datetime.now().astimezone(tz=khtz).strftime('%d%m%Y')
+    day = date[:2]
+    day = kdict['KhmerNumber'][int(day[0])]+kdict['KhmerNumber'][int(day[1])]
+    month = date[2:4]
+    month = kdict['KhmerMonth'][int(month)]
+    year = date[4:]
+    print(year)
+    year = kdict['KhmerNumber'][int(year[0])]+kdict['KhmerNumber'][int(year[1])]+kdict['KhmerNumber'][int(year[2])]+kdict['KhmerNumber'][int(year[3])]
+    date = day+ ' ' + ' ' +month + ' ' + year
+    #pdfFile = '/static/pdfs/'+ id +'.pdf'
+    pdfFile = '/static/pdfs/test.pdf'
 
-    template = self.template.substitute()
+    template = self.template.substitute(username=username, date=date)
     options = {
       'page-size': 'Letter',
       'margin-top': '0',
@@ -103,8 +125,8 @@ class Login(Bottle):
     else:
       import pdfkit
       pdf = pdfkit.from_string(template, False, options=options)
-      with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
-        time.sleep(.5)
+      #with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
+      with open('public/pdfs/test.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
