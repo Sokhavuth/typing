@@ -93,7 +93,7 @@ class Login(Bottle):
     print(year)
     year = kdict['KhmerNumber'][int(year[0])]+kdict['KhmerNumber'][int(year[1])]+kdict['KhmerNumber'][int(year[2])]+kdict['KhmerNumber'][int(year[3])]
     date = day+ ' ' + ' ' +month + ' ' + year
-    pdfFile = '/static/pdfs/'+ id +'.pdf'
+    pdfFile = '/static/pdfs/certificate.pdf'
 
     template = self.template.substitute(username=username, date=date)
     options = {
@@ -108,15 +108,14 @@ class Login(Bottle):
     
     if 'DYNO' in os.environ:
       pdf = pydf.generate_pdf(template, **options)
-      with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
-        time.sleep(1)
+      with open('public/pdfs/certificat.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
     else:
       import pdfkit
       pdf = pdfkit.from_string(template, False, options=options)
-      with open('public/pdfs/'+ id +'.pdf', 'wb') as f:
+      with open('public/pdfs/certificate.pdf', 'wb') as f:
         f.write(pdf)
         f.close()
 
