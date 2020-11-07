@@ -111,7 +111,7 @@ class Login(Bottle):
     
     if 'DYNO' in os.environ:
       async def certificateGenerate():
-        await generateTemplate()
+        template = await generateTemplate()
         pdf = pydf.generate_pdf(template, **options)
         with open('public/pdfs/'+id+'.pdf', 'wb') as f:
           time.sleep(.25)
