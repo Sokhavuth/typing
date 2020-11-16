@@ -1,6 +1,6 @@
 
 <footer >
-  <div class="footer region">Khmer Web Typing © 2020 </div>
+  <div class="footer region">© 2020 <a href="https://www.khmerweb.app/">Khmer Web</a></div>
 </footer>
 <script>
 $(".keyboard-base .key").on({

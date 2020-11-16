@@ -34,7 +34,6 @@ class Userdb():
     )'''
 
     self.cursor.execute(SQL)
-  
     self.conn.close()
 
   def insert(self, *user):
